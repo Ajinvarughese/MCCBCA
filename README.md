@@ -1,2 +1,8 @@
-# MCCBCA
-BCA Association's official portfolio, showcasing our vibrant community, events, and gallery. Built using ReactJS and MUI, this repository fosters collaboration among tech enthusiasts. Explore our journey, contribute to projects, and be part of the growing community! We organize seminars, workshops, technical expertise and career opportunities.
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
