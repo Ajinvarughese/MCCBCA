@@ -5,31 +5,23 @@ const Style = () => {
             minHeight: '569px',
         },
         subTitle: {
-            fontFamily: "'Gagalin', sans-serif",
-            color: '#fff',
+            fontFamily: "'VALORANT', sans-serif",
+            color: '#ff4655',
             fontSize: {
-                xs: 'clamp(2.5rem, 2vw, 3.6rem)',
-                sm: '3.3rem',
-                md: '4.5rem',
-            },
-            letterSpacing: {
-                xs: '2px',  
-                md: '4px',
+                xs: 'clamp(1.3rem, 2vw, 1.9rem)',
+                sm: '1.9rem',
             },
             textAlign: 'center',
         },
         title: {
             textAlign: 'center',
-            fontWeight: 'bold',
+            color: '#fff',
             fontSize: {
-                xs: 'clamp(7rem, 8rem, 9rem)',
-                sm: '11rem',
-                md: '14rem'
+                xs: 'clamp(2.2rem, 3.2rem, 4.5rem)',
+                sm: '4.6rem',
+                md: '6rem'
             },
-            WebkitTextStroke: '2px #fff',
-            color: 'transparent',
-            fontFamily: 'horizon',
-            fontFamily: "'Archivo Black', sans-serif",
+            fontFamily: "'VALORANT', sans-serif",
 
             fontStyle: 'normal',
         },
@@ -47,25 +39,22 @@ const Style = () => {
         },
         scDown: {
             textAlign: 'center',
+            color: '#fff',
         },
-        divider: {
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            width: '100%',
-            overflow: 'hidden',
-            lineHeight: 0,
+         down: {
+            animation: 'float 2s ease-in-out infinite', 
+            '@keyframes float': {
+            '0%': {
+                transform: 'translateY(0)', 
+            },
+            '50%': {
+                transform: 'translateY(7px)', 
+            },
+            '100%': {
+                transform: 'translateY(0)', 
+            },
+            },
         },
-        svg: {
-            position: 'relative',
-            display: 'block',
-            width: 'calc(100% + 1.3px)',
-            height: '81px',
-            transform: 'rotateY(180deg)',
-        },
-        shapeFill: {
-            fill: '#FFFFFF',
-        }
     }
 }
 export default Style;

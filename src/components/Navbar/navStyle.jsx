@@ -4,13 +4,14 @@ const Style = () => {
             position: 'fixed',
             color: '#fff',
             top: '1.5rem',
+            zIndex: 100000,
             left: '50%',
             transform: 'translate(-50%, 0)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: {
                 md: 'space-between',
-                xs: 'center',
+                xs: 'space-between',
             },
             padding: {
                 md: '0 2rem',
@@ -19,7 +20,7 @@ const Style = () => {
             height: '4rem',
             width: {
                 md: '70%',
-                xs: '98%',
+                xs: '96%',
             },
             maxWidth: '912px',
             borderRadius: '6px',
@@ -32,6 +33,20 @@ const Style = () => {
                 xs: 'none',
             },
         },
+        logo: {
+            width: '92px',
+            height: '92px',
+            transition: '0.3s ease',
+            '&:hover': {
+                cursor: 'pointer',
+                transform: 'scale(1.1)',
+            }
+        },
+        logoImg: {
+            maxHeight: '100%',
+            maxWidth: '100%',
+            display: 'block'
+        }
     }
 };
 export default Style;
