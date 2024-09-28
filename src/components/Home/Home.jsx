@@ -7,6 +7,7 @@ import Instagram from '@mui/icons-material/Instagram';
 import X from '@mui/icons-material/X';
 import About from '../About/About';
 import Gallery from '../Gallery/Gallery';
+import Faculty from '../Faculty/Faculty';
 
 const style = Style();
 function Home() {
@@ -72,6 +73,9 @@ function Home() {
             </Box>
             <Box>
                 <Gallery />
+            </Box>
+            <Box>
+                <Faculty />
             </Box>
         </>
     );

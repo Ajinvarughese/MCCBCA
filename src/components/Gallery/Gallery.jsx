@@ -4,10 +4,7 @@ import Background from "../../theme/Background/Background";
 import ScrollType from "../../theme/ImageList/ScrollType";
 const Gallery = () => {
     return(
-        <Background
-            b2 = {true}
-            b2Color="var(--accent2)"
-        >
+        <Background>
             <Box sx={{
                 minHeight: '569px', 
                 padding: {

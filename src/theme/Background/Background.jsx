@@ -1,44 +1,48 @@
 import { Box } from "@mui/material";
 
-const style = {
-  body: {
-    minHeight: '568px',
-    background: '#03010c',
+
+
+
+  const Background = ({ children, b1, b2, b1Color, b2Color, b2Style}) => {
     
-    width: '100%',
-    overflow: 'hidden',
-    position: 'relative',
-  },
-  b1: {
-    position: 'absolute',
-    top: '-80px',
-    left: '-80px',
-    transform: 'translate(-50%, -50%)',
-    animation: 'scalePulse 4s ease-in-out infinite',
-  },
-  b2: {
-    position: 'absolute',
-    bottom: '-120px',
-    right: '-120px',
-    transform: 'translate(55%, 50%)',
-    animation: 'scalePulse 4s ease-in-out infinite',
-  }
-};
-
-
-const styles = `
-  @keyframes scalePulse {
-    0%, 100% {
-      scale: 1 
+    const style = {
+    body: {
+      minHeight: '568px',
+      background: '#03010c',
+      
+      width: '100%',
+      overflow: b2Style ? '': 'hidden',
+      position: 'relative',
+    },
+    b1: {
+      position: 'absolute',
+      top: '-80px',
+      left: '-80px',
+      transform: 'translate(-50%, -50%)',
+      animation: 'scalePulse 4s ease-in-out infinite',
+    },
+    b2: {
+      position: 'absolute',
+      bottom: b2Style ? '0' :'-120px',
+      top: b2Style? '-80px': 0, 
+      right: '-120px',
+      transform: b2Style ? 'translate(60%, -70%)' : 'translate(55%, 50%)',
+      animation: 'scalePulse 4s ease-in-out infinite',
     }
-    50% {
-      scale: 1.1 
+  };
+
+
+  const styles = `
+    @keyframes scalePulse {
+      0%, 100% {
+        scale: 1 
+      }
+      50% {
+        scale: 1.1 
+      }
     }
-  }
-`;
-
-
-const Background = ({ children, b1, b2, b1Color, b2Color}) => {
+  `;
+  
   return (
       <Box sx={style.body}>
         <style>{styles}</style>
