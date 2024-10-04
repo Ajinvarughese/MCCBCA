@@ -8,6 +8,7 @@ import X from '@mui/icons-material/X';
 import About from '../About/About';
 import Gallery from '../Gallery/Gallery';
 import Faculty from '../Faculty/Faculty';
+import Background from '../../theme/Background/Background';
 
 const style = Style();
 function Home() {
@@ -72,10 +73,14 @@ function Home() {
                 <About />
             </Box>
             <Box>
-                <Gallery />
-            </Box>
-            <Box>
-                <Faculty />
+                <Background
+                    b2={true}
+                    b2Color="var(--accent2)"
+                    b2Style={true}
+                >
+                    <Gallery />
+                    <Faculty />
+                </Background>
             </Box>
         </>
     );

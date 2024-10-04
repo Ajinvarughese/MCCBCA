@@ -11,7 +11,8 @@ import { Box } from "@mui/material";
       background: '#03010c',
       
       width: '100%',
-      overflow: b2Style ? '': 'hidden',
+      overflow: 'hidden',
+      scroll: 'hidden',
       position: 'relative',
     },
     b1: {
@@ -24,9 +25,9 @@ import { Box } from "@mui/material";
     b2: {
       position: 'absolute',
       bottom: b2Style ? '0' :'-120px',
-      top: b2Style? '-80px': 0, 
+      top: b2Style? '50%': 0, 
       right: '-120px',
-      transform: b2Style ? 'translate(60%, -70%)' : 'translate(55%, 50%)',
+      transform: b2Style ? 'translate(60%, -50%)' : 'translate(55%, 50%)',
       animation: 'scalePulse 4s ease-in-out infinite',
     }
   };

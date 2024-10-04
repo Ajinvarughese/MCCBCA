@@ -4,7 +4,7 @@ import Background from "../../theme/Background/Background";
 import ScrollType from "../../theme/ImageList/ScrollType";
 const Gallery = () => {
     return(
-        <Background>
+        // <Background>
             <Box sx={{
                 minHeight: '569px', 
                 padding: {
@@ -27,6 +27,7 @@ const Gallery = () => {
                         width: {
                             md: '55%'
                         },
+                        maxWidth: '600px',
                         margin: '2.2rem 0 1.5rem 0'
                     }}>Welcome to our gallery! Here, you can explore a vibrant collection of images showcasing our events, activities, and student achievements. Each photo captures the spirit of our community and highlights the creativity and talent of our students. Dive in to see memorable moments and get a glimpse of life in our department!</Typography>
                     <Button text="See more"/>
@@ -63,7 +64,7 @@ const Gallery = () => {
                     background: 'var(--accent)'
                 }} />
             </Box>
-        </Background>
+        // </Background>
     );
 }
 

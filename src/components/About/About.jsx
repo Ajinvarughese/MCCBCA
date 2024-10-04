@@ -17,14 +17,14 @@ const About = () => {
         <Box sx={s.ab1}>
           <Box sx={{
             flex: 1,
-            margin: 0, // Ensure no margin is causing gaps
-            padding: 0, // Remove padding if present
+            margin: 0, 
+            padding: 0, 
           }}>
             <Box sx={{
               background: 'var(--accent)',
               height: '1px',
               maxWidth: '980px',
-              margin: 0, // Ensure no margin here either
+              margin: 0,
               padding: 0,
             }}></Box>
           </Box>

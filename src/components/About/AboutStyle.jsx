@@ -18,7 +18,7 @@ const Style = () => {
             display: 'flex',
             alignItems: 'center',
             gap: '1.5rem',
-            margin: 0, // Remove unwanted margins
+            margin: 0, 
         },
         img: {
             maxWidth: '100%',
