@@ -86,7 +86,7 @@ const ScrollType = () => {
                 } else {
                     // Scroll by one image width, then speed up again
                     listRef.current.scrollBy({
-                        left: 3, // Adjust to match the image width
+                        left: 4, // Adjust to match the image width
                         behavior: 'smooth',
                     });
                     setScrollSpeed(1); // Regular fast scrolling

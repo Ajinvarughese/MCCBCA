@@ -7,8 +7,43 @@ import Grid from "@mui/material/Grid2";
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 
-const s = Style();
+import Titles from "../../theme/Style/Titles";
 
+const titles = Titles();
+
+const s = Style();
+const detail = [
+    {
+        name: "Ms. Saramma John",
+        designation: "H.O.D BCA",
+        qualification: "M.sc, Bsc"
+    },
+    {
+        name: "Ms. Anu Thomas",
+        designation: "Faculty",
+        qualification: "M.sc, MCA"
+    },
+    {
+        name: "Ms. Saramma John",
+        designation: "H.O.D BCA",
+        qualification: "M.sc, Bsc"
+    },
+    {
+        name: "Ms. Anu Thomas",
+        designation: "Faculty",
+        qualification: "M.sc, MCA"
+    },
+    {
+        name: "Ms. Saramma John",
+        designation: "H.O.D BCA",
+        qualification: "M.sc, Bsc"
+    },
+    {
+        name: "Ms. Anu Thomas",
+        designation: "Faculty",
+        qualification: "M.sc, MCA"
+    }
+]
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: 'transparent ',
@@ -43,13 +78,10 @@ const Faculty = () => {
                     }}></Box>
                 </Box>
                 <Box>
-                    <Typography variant="h3" sx={{
-                            fontFamily: 'var(--titleFont)',
-                            color: 'var(--color1)',
-                    }}>
+                    <Typography variant="h3" sx={titles.title}>
                     our <Typography variant="body" sx={{
                         color: 'var(--accent)',
-                    }}>Gallery</Typography>
+                    }}>faculty</Typography>
                     </Typography>
                 </Box>
             </Box>
@@ -60,13 +92,13 @@ const Faculty = () => {
             </Box>
 
 
-            <Grid container spacing={{ xs: 5, md: 5 }} sx={{padding: "2rem 0",}} columns={{ xs: 4, sm: 8, md: 12 }}>
-                {Array.from(Array(6)).map((_, index) => (
-                    <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }} >
+            <Grid container spacing={{ xs: 5, md: 5 }} sx={{padding: "2rem 0",}} columns={{ xs: 3, sm: 8, md: 12 }}>
+                {Array.from(detail).map((_, index) => (
+                    <Grid sx={{ margin: 'auto',}} key={index} size={{ xs: 2, sm: 4, md: 4 }} >
                         <Item>
-                            <Box sx={{width: '120px', margin: {md: 'auto'}, position: 'relative'}}>
+                            <Box sx={{width: {xs: '160px', sm: '140px'}, margin: {xs: 'auto', sm: 0, md: 'auto'}, position: 'relative'}}>
                                 <Box
-                                    sx={{position: 'relative',zIndex: 100000}}
+                                    sx={{position: 'relative',zIndex: 1}}
                                 >
                                     <Hexagon 
                                         img={hod}
@@ -76,57 +108,15 @@ const Faculty = () => {
                                     <Hexagon 
                                         img={hod}
                                         details={true}
+                                        content={detail[index]}
                                     />
+
                                 </Box>
                             </Box>
                         </Item>
                     </Grid>
                 ))}
             </Grid>
-            
-            {/* <Box sx={{
-                display: 'grid',
-                gridTemplateColumns: 'auto auto auto',
-                placeItems: 'center',
-                border: '1px solid',
-                gap: 2,
-                position: 'relative',
-            }}>
-      
-                <Box sx={{width: '120px'}}>
-                    <Hexagon 
-                        img={hod}
-                    />
-                </Box>
-                <Box sx={{width: '120px'}}>
-                    <Hexagon 
-                        img={hod}
-                    />
-                </Box>
-                <Box sx={{width: '120px'}}>
-                    <Hexagon 
-                        img={hod}
-                    />
-                </Box>
-
-                <Box sx={{width: '120px'}}>
-                    <Hexagon 
-                        img={hod}
-                    />
-                </Box>
-                <Box sx={{width: '120px'}}>
-                    <Hexagon 
-                        img={hod}
-                    />
-                </Box>
-                <Box sx={{width: '120px'}}>
-                    <Hexagon 
-                        img={hod}
-                    />
-                </Box>
-
-            </Box> */}
-
         </Box>
     );
 }

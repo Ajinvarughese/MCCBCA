@@ -6,6 +6,11 @@
   --accent: #ff4655; 
   --accent2: #6cece5;
   --color1: #f0f0f0;
+  --bg: #03010c;
+  --surface62: rgba(6, 3, 22, 0.434);  /* 62% transparency */
+  --surface77: rgba(6, 3, 22, 0.652);  /* 77% transparency */
+  --surface99: rgba(6, 3, 22, 0.81);
+
 }
 * {
   margin: 0;
@@ -13,3 +18,19 @@
   color: var(--color1);
 }
 
+body::-webkit-scrollbar{
+  width: 5px;
+  background: var(--bg);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #2D2D2D; 
+  border-radius: 10px;
+  visibility: visible;
+}
+body {
+  scroll-behavior: smooth;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: #424141ce;
+}

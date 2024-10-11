@@ -2,7 +2,7 @@ const Style = () => {
     return {
         main: {
             minHeight: '569px',
-            height: '100vh',
+
             padding: {
                 xs: '7rem 4% 3rem 4%',
                 md: '8rem 7% 4rem 7%',
@@ -21,10 +21,13 @@ const Style = () => {
         },
         hexagon2: {
             position: 'absolute',
-            top: '80%',
-            left: "135%",
+            top: '75%',
+            left: "132%",
             transform: 'translate(-50%, -50%)',
-            width: '100%',
+            width: {
+                xs: '150px',
+                sm: '130px',
+            }
         },
 
     }

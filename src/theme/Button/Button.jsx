@@ -1,19 +1,14 @@
 import ButtonReact from "@mui/material/Button";
 
+import ButtonStyle from "./ButtonStyle";
+
+const style = ButtonStyle();
 const Button = (props) => {
     return(
         <ButtonReact
+            onClick={props.onClick}
             variant="contained"
-            sx={{
-                fontSize: '11px', 
-                fontWeight: 'bold', 
-                background: 'var(--accent)',
-                color: 'var(--color1)',
-                transition: '0.3s ease',
-                '&:hover': {
-                    transform: 'scale(1.04)',
-                }
-            }}
+            sx={style.button}
         >
             {props.text}
         </ButtonReact>

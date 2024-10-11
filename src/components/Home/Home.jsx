@@ -1,5 +1,5 @@
-import { Box, Typography } from '@mui/material';
-import Navbar from '../Navbar/Navbar';
+import { Box, Typography, Link } from '@mui/material';
+import Navbar from '../../theme/Navbar/Navbar';
 import Style from './styleHome';
 import Wall from '../../assets/wall.mp4';
 import DownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -9,11 +9,13 @@ import About from '../About/About';
 import Gallery from '../Gallery/Gallery';
 import Faculty from '../Faculty/Faculty';
 import Background from '../../theme/Background/Background';
+import College from '../College/College';
+import Contact from '../Contact/Contact';
 
 const style = Style();
 function Home() {
     return (
-        <>
+        <Box>
             <Box sx={style.body}>
 
                 {/* Background */}
@@ -45,7 +47,7 @@ function Home() {
                     width: '100%', 
                     height: '100%', 
                     minHeight: 'inherit',
-                    background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))',
+                    background: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8))',
                     zIndex: -1, 
                     }}
                 />
@@ -65,7 +67,33 @@ function Home() {
                         <Box sx={style.scDown}>
                             <Typography variant='h6'>Scroll Down</Typography>
                             <DownIcon sx={style.down} />
-                        </Box> 
+                        </Box>
+                    </Box>
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        paddingRight: '7px',
+                    }}>
+                        <Link href="https://x.com">
+                            <X sx={{
+                                width: '15px', 
+                                transition: '0.3s ease',
+                                '&:hover': {
+                                    transform: 'scale(1.1)',
+                                }
+                            }} />
+                        </Link>
+                        <Link href="https://instagram.com">
+                            <Instagram sx={{
+                                width: '15px', 
+                                transition: '0.3s ease',
+                                '&:hover': {
+                                    transform: 'scale(1.1)',
+                                }
+                            }} />
+                        </Link>
                     </Box>
                 </Box>
             </Box>
@@ -82,7 +110,13 @@ function Home() {
                     <Faculty />
                 </Background>
             </Box>
-        </>
+            <Box>
+                <College />
+            </Box>
+            <Box>
+                <Contact />
+            </Box>
+        </Box>
     );
 }
 

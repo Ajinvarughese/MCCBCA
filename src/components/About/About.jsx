@@ -3,7 +3,9 @@ import Background from "../../theme/Background/Background";
 import Style from "./AboutStyle";
 import Button from "../../theme/Button/Button";
 import AboutImage from "../../assets/about.png";
+import Titles from "../../theme/Style/Titles";
 
+const titles = Titles();
 const s = Style();
 const About = () => {
   return (
@@ -29,7 +31,7 @@ const About = () => {
             }}></Box>
           </Box>
           <Box>
-            <Typography variant="h3" sx={s.title}>
+            <Typography variant="h3" sx={titles.title}>
               about <Typography variant="body" sx={s.title2}>us</Typography>
             </Typography>
           </Box>

@@ -8,7 +8,7 @@ import { Box } from "@mui/material";
     const style = {
     body: {
       minHeight: '568px',
-      background: '#03010c',
+      background: 'var(--bg)',
       
       width: '100%',
       overflow: 'hidden',
