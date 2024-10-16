@@ -36,9 +36,14 @@ const College = () => {
                             existence to the farsighted vision of its founder His Excellency Yoohanon Mar Chrysostom. 
                             Started in June 2014 as a self financing college affiliated to the University of Kerala, it is determined 
                             to provide quality education by inculcating ethical, social and human values in students who are in 
-                            exploration of a brilliant career.!
+                            exploration of a brilliant career.
                         </Typography>
-                        <Button text="See more"/>
+                        <Button
+                            onClick= {() => {
+                                window.location.href = 'https://www.marchrysostomcollege.com/';
+                            }} 
+                            text="See more"
+                        />
 
                         <Box sx={s.number}>
                             <Box sx={s.i}>

@@ -37,7 +37,7 @@ const Navbar = () => {
                 />
             </Box>
             <List>
-                {['Home', 'About', 'Gallery', 'College', 'Year Book'].map((text, index) => (
+                {['Home', 'About', 'Gallery', 'College', 'Year Book', 'Bright Minds'].map((text, index) => (
                     <ListItem key={index} disablePadding>
                         <ListItemButton
                             onClick={() => {
@@ -78,7 +78,6 @@ const Navbar = () => {
                         aria-label="open drawer"
                         edge="end"
                         onClick={handleDrawerToggle}
-                        sx={{display: { xs: 'block', md: 'none' } }}
                     >
                         <Menu />
                     </IconButton>
@@ -91,16 +90,28 @@ const Navbar = () => {
                 open={mobileOpen}
                 onClose={handleDrawerToggle}
                 ModalProps={{ keepMounted: true }} // Improves performance on mobile
-                sx={{
-                    display: { xs: 'block', md: 'none' }, 
+                sx={{ 
                     '& .MuiDrawer-paper': {
                         padding: '1rem 5% 1rem 1%',
-                        overflow: 'hidden',
+                        overflowX: 'hidden',
                         boxSizing: 'border-box',
                         maxWidth: 280,
                         width: '80%',
                         backgroundColor: 'rgba(237,237,237,0.1)',
-                        backdropFilter: 'blur(12px)', // Set the background color to blue
+                        backdropFilter: 'blur(12px)',
+
+                        // Scrollbar styling
+                        '&::-webkit-scrollbar': {
+                            width: '5px',
+                            background: 'var(--bg)',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                            background: '#2D2D2D', 
+                            borderRadius: '10px',
+                        },
+                        '&::-webkit-scrollbar-thumb:hover': {
+                            background: '#424141ce',
+                        },
                     },
                 }}
             >

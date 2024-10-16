@@ -119,9 +119,9 @@ export default function OurGallery() {
                   borderRadius: '6px',
                   cursor: 'pointer',
                 }}
-                {...srcset(item.img, 121, item.rows, item.cols)}
+                {...srcset(item.img, 141, item.rows, item.cols)}
                 alt={item.title}
-                loading="lazy"
+                
               />
             </ImageListItem>
           ))}

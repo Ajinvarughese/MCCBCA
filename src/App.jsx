@@ -3,6 +3,7 @@ import './App.css'
 import Home from './components/Home/Home';
 import YearBook from './Others/Yearbook/YearBook';
 import OurGallery from './Others/OurGallery/OurGallery';
+import BrightMinds from './Others/BrightMinds/BrightMinds';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
           <Route path='/' element={<Home />}/>
           <Route path='/yearbook' element={<YearBook />} />
           <Route path='/gallery' element={<OurGallery />} />
+          <Route path='/brightminds' element={<BrightMinds />} />
         </Routes>
       </BrowserRouter>
     </>
