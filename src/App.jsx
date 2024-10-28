@@ -4,6 +4,7 @@ import Home from './components/Home/Home';
 import YearBook from './Others/Yearbook/YearBook';
 import OurGallery from './Others/OurGallery/OurGallery';
 import BrightMinds from './Others/BrightMinds/BrightMinds';
+import ImageUploader from './Others/admin/ImageUploader';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route path='/yearbook' element={<YearBook />} />
           <Route path='/gallery' element={<OurGallery />} />
           <Route path='/brightminds' element={<BrightMinds />} />
+          <Route path='/test' element={<ImageUploader />} />
         </Routes>
       </BrowserRouter>
     </>
