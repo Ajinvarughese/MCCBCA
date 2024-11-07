@@ -53,7 +53,7 @@ const itemData = [
 ];
 
 
-const ScrollType = () => {
+const MainGallery = () => {
     const listRef = useRef(null);
     const [width, setWidth] = useState(window.innerWidth);
     const [scrollSpeed, setScrollSpeed] = useState(1); // Initialize scroll speed
@@ -140,4 +140,4 @@ const ScrollType = () => {
     );
 };
 
-export default ScrollType;
+export default MainGallery;

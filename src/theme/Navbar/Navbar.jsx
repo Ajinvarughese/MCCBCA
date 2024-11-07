@@ -41,16 +41,28 @@ const Navbar = () => {
                     <ListItem key={index} disablePadding>
                         <ListItemButton
                             onClick={() => {
-                                const route = text.toLowerCase().trim() === 'home' ? '' : text.toLowerCase().replace(/\s+/g, ''); // Remove spaces
-                                window.location.replace(`/${route}`);
+                                const trimmedRoute = text.toLowerCase().trim();
+                                let route = "";
+
+                                if (trimmedRoute === 'home') {
+                                    route = '/';
+                                } else if (trimmedRoute === 'college') {
+                                    // Use full URL directly for external link
+                                    window.location.href = 'https://marchrysostomcollege.com';
+                                    return;
+                                } else {
+                                    route = `/${trimmedRoute.replace(/\s+/g, '')}`;
+                                }
+                                
+                                window.location.replace(route);
                             }}
                         >
-
                             <ListItemText primary={text} />
                         </ListItemButton>
                     </ListItem>
                 ))}
             </List>
+
         </Box>
     );
 
@@ -66,13 +78,26 @@ const Navbar = () => {
                     <Box sx={style.navlist}>
                         {['Home', 'About', 'Gallery', 'College'].map((text, index) => (
                             <ListItem key={index} onClick={() => {
-                                const route = text.toLowerCase().trim() === 'home' ? '' : text.toLowerCase().replace(/\s+/g, ''); // Remove spaces
-                                window.location.replace(`/${route}`);
+                                const trimmedRoute = text.toLowerCase().trim();
+                                let route = "";
+
+                                if (trimmedRoute === 'home') {
+                                    route = '/';
+                                } else if (trimmedRoute === 'college') {
+                                    // Use full URL directly for external link
+                                    window.location.href = 'https://marchrysostomcollege.com';
+                                    return;
+                                } else {
+                                    route = `/${trimmedRoute.replace(/\s+/g, '')}`;
+                                }
+
+                                window.location.replace(route);
                             }}>
                                 {text}
                             </ListItem>
                         ))}
                     </Box>
+
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"

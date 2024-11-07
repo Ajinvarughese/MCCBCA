@@ -1,16 +1,37 @@
 import React, { useState } from "react";
 import Background from "../../theme/Background/Background";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Dialog, DialogContent, DialogContentText, DialogActions, Typography } from "@mui/material";
 import Titles from "../../theme/Style/Titles";
 import Navbar from "../../theme/Navbar/Navbar";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SendIcon from "@mui/icons-material/Send";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import SaveIcon from "@mui/icons-material/Save";
+import ApiUrl from "../../Hooks/URL";
 
 const titles = Titles();
+const api = ApiUrl();
 
 const ImageUploader = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [uploadedCount, setUploadedCount] = useState(0);
   const [fileCount, setFileCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false); // state for dialog visibility
+
+  const handleUploadUrl = async (url) => {
+    const data = {
+      "url": url.url
+    };
+    fetch(api.api+"gallery/upload", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  };
 
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
@@ -19,34 +40,51 @@ const ImageUploader = () => {
       preview: URL.createObjectURL(file),
     }));
     setSelectedFiles(filePreviews);
-    setFileCount(files.length); // Store the initial count of selected files
-    setUploadedCount(0); // Reset the uploaded count for each new selection
+    setFileCount(files.length);
+    setUploadedCount(0);
   };
 
   const handleUploadClick = async () => {
     if (!selectedFiles || fileCount === 0) return;
 
     const uploadPromises = selectedFiles.map(async ({ file }) => {
+      setLoading(true);
       const data = new FormData();
       data.append("file", file);
       data.append("upload_preset", "mccbca");
       data.append("cloud_name", "dohwjrsvl");
 
-      const res = await fetch("https://api.cloudinary.com/v1_1/dohwjrsvl/image/upload", {
-        method: "POST",
-        body: data,
-      });
-
-      const uploadImageUrl = await res.json();
-      setUploadedCount((prev) => prev + 1);
-      return uploadImageUrl.url;
+      try {
+        const res = await fetch("https://api.cloudinary.com/v1_1/dohwjrsvl/image/upload", {
+          method: "POST",
+          body: data,
+        });
+        if (!res.ok) {
+          throw new Error(`Upload failed: ${res.status}`);
+        }
+        const uploadImageUrl = await res.json();
+        console.log(uploadImageUrl);
+        handleUploadUrl(uploadImageUrl);
+        setUploadedCount((prev) => prev + 1);
+        return uploadImageUrl.url;
+      } catch (error) {
+        console.log("Error:", error);
+      } finally {
+        setLoading(false);
+      }
     });
 
     const newImages = await Promise.all(uploadPromises);
     setUploadedImages((prevImages) => [...prevImages, ...newImages]);
 
-    // Clear selected files after upload
+    // Clear selected files and reset input
     setSelectedFiles([]);
+    setFileCount(0);
+    setUploadedCount(0);
+    document.getElementById('file-input').value = null;
+
+    // Show success dialog after upload completes
+    setOpenDialog(true);
   };
 
   return (
@@ -69,13 +107,9 @@ const ImageUploader = () => {
             textAlign: 'center',
           }}
         >
-          
           <Typography variant="h3" sx={titles.title}>
-          upload <Typography variant="body" sx={{
-              color: 'var(--accent)',
-          }}>images</Typography>
+            upload <Typography variant="body" sx={{ color: 'var(--accent)' }}>images</Typography>
           </Typography>
-                
         </Box>
         <Box
           sx={{
@@ -87,16 +121,73 @@ const ImageUploader = () => {
             borderRadius: '6px',
           }}
         >
-          <input
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handleFileChange}
-            style={{ marginBottom: '1rem' }}
-          />
-          <Button variant="contained" onClick={handleUploadClick} sx={{ mb: 2 }}>
-            Upload Images
-          </Button>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: {
+                xs: "column",
+                sm: "row",
+              },
+              gap: '5px',
+              justifyContent: "space-between"
+            }}
+          >
+            <Box>
+              <Button
+                component="label"
+                role={undefined}
+                disabled={loading}
+                variant={fileCount > 0 ? "outlined" : "contained"}
+                tabIndex={-1}
+                sx={fileCount > 0 ?
+                  {
+                    color: '#fff',
+                    border: '1px solid #fff',
+                    transition: '0.3s ease',
+                    "&:hover": { transform: 'scale(1.03)' },
+                  } :
+                  {
+                    background: 'var(--accent)',
+                    transition: '0.3s ease',
+                    "&:hover": { transform: 'scale(1.03)' },
+                  }
+                }
+                startIcon={<CloudUploadIcon />}
+              >
+                Upload Images
+                <input
+                  id="file-input"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handleFileChange}
+                  style={{ display: 'none', marginBottom: '1rem' }}
+                />
+              </Button>
+            </Box>
+            {fileCount > 0 &&
+              <Box>
+                {loading ?
+                  <LoadingButton
+                    loading
+                    loadingPosition="start"
+                    startIcon={<SaveIcon />}
+                    variant="contained"
+                  >
+                    Uploading...
+                  </LoadingButton> :
+                  <Button
+                    sx={{ marginLeft: '-2px' }}
+                    variant="contained"
+                    onClick={handleUploadClick}
+                    endIcon={<SendIcon />}
+                  >
+                    Send
+                  </Button>
+                }
+              </Box>
+            }
+          </Box>
 
           <Typography variant="h6">
             Uploaded images: {uploadedCount} / {fileCount}
@@ -116,6 +207,18 @@ const ImageUploader = () => {
             ))}
           </Box>
         </Box>
+
+        <Dialog
+          open={openDialog}
+          onClose={() => setOpenDialog(false)}
+        >
+          <DialogContent>
+            <DialogContentText>Images successfully uploaded!</DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpenDialog(false)} color="primary">Close</Button>
+          </DialogActions>
+        </Dialog>
       </Box>
     </Background>
   );

@@ -11,6 +11,7 @@ import Faculty from '../Faculty/Faculty';
 import Background from '../../theme/Background/Background';
 import College from '../College/College';
 import Contact from '../Contact/Contact';
+import { Fade } from 'easy-reveal';
 
 const style = Style();
 function Home() {
@@ -61,13 +62,17 @@ function Home() {
                 }>
                     <Box sx={style.hero}>
                         <Box sx={style.header}>
-                            <Typography variant='h2' sx={{...style.subTitle, marginTop: '2rem'}}>department of</Typography>
-                            <Typography variant='h1' sx={style.title}>computer <br /> application</Typography>     
-                        </Box>          
-                        <Box sx={style.scDown}>
-                            <Typography variant='h6'>Scroll Down</Typography>
-                            <DownIcon sx={style.down} />
-                        </Box>
+                            <Fade up delay={500} duration={1300}>
+                                <Typography variant='h2' sx={{...style.subTitle, marginTop: '2rem'}}>department of</Typography>
+                                <Typography variant='h1' sx={style.title}>computer <br /> application</Typography>     
+                            </Fade>
+                        </Box>         
+                            <Box sx={style.scDown}>
+                                <Fade up delay={500} duration={1300}> 
+                                    <Typography variant='h6'>Scroll Down</Typography>
+                                    <DownIcon sx={style.down} />
+                                </Fade>
+                            </Box>
                     </Box>
                     <Box sx={{
                         display: 'flex',

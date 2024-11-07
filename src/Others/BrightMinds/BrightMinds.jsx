@@ -4,6 +4,9 @@ import Navbar from "../../theme/Navbar/Navbar";
 import Titles from "../../theme/Style/Titles";
 import Grid from "@mui/material/Grid2";
 import { styled } from "@mui/material/styles";
+import { Fade } from "easy-reveal";
+
+import Data from "../../json/BrightMinds.json";
 
 const titles = Titles();
 
@@ -27,18 +30,20 @@ const renderStudentGrid = (students, yearLabel) => (
     </Typography>
     <Grid container sx={{ margin: '2rem auto 0 auto' }} maxWidth={1000} spacing={2}>
       {students.map((item, index) => (
-        <Grid item xs={12} sm={6} key={index}>
-          <Item>
-            <Box>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography sx={{ fontWeight: 'bold' }} variant="subtitle1">
-                  {item.name}
-                </Typography>
+        <Grid onClick={() => {window.location.href = item.url}} item xs={12} sm={6} key={index}>
+          <Fade duration={1500} up delay={index*200}>
+            <Item sx={{cursor: 'pointer'}}>
+              <Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Typography sx={{ fontWeight: 'bold' }} variant="subtitle1">
+                    {item.name}
+                  </Typography>
+                </Box>
+                <Divider sx={{ margin: '0.5rem 0', background: 'var(--color1)' }} />
+                <Typography variant="body2">"{item.skills}"</Typography>
               </Box>
-              <Divider sx={{ margin: '0.5rem 0', background: 'var(--color1)' }} />
-              <Typography variant="body2">"{item.skills}"</Typography>
-            </Box>
-          </Item>
+            </Item>
+            </Fade>
         </Grid>
       ))}
     </Grid>
@@ -47,7 +52,7 @@ const renderStudentGrid = (students, yearLabel) => (
 
 const BrightMinds = () => {
   return (
-    <Background b1={true} b1Color="var(--accent2)">
+    <Background b1 b1Color="var(--accent2)">
       <Box
         sx={{
           padding: {
@@ -68,11 +73,11 @@ const BrightMinds = () => {
         </Box>
 
         <Box sx={{ margin: '1rem 2%' }}>
-            {renderStudentGrid(data1, "1st Year Students")}
+            {renderStudentGrid(Data.year1, "1st Year Students")}
             <br />
-            {renderStudentGrid(data2, "2nd Year Students")}
+            {renderStudentGrid(Data.year2, "2nd Year Students")}
             <br />
-            {renderStudentGrid(data3, "3rd Year Students")}
+            {renderStudentGrid(Data.year3, "3rd Year Students")}
             <br />
           {/* 4th Year Students - Coming Soon */}
           <Typography variant="h6" sx={{ marginTop: '2rem', textAlign: 'center' }}>
@@ -101,64 +106,3 @@ export default BrightMinds;
 
 
 
-const data1 = [
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    skills: "Poster Design, Website UI Design, Video Editing"
-  },
-  // Add more objects if you want each item to have different content
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    skills: "Video Editing, Signing"
-  },
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    skills: "Piano"
-  },
-];
-
-const data2 = [
-    {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    skills: "Full stack web development"
-  },
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    skills: "Poster Design, Website UI Design, Video Editing"
-  },
-  // Add more objects if you want each item to have different content
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    skills: "Video Editing, Signing"
-  },
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    skills: "Piano"
-  },
-]
-
-const data3 = [
-    {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    skills: "Poster Design, Website UI Design, Video Editing"
-  },
-  // Add more objects if you want each item to have different content
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    skills: "Video Editing, Signing"
-  },
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    skills: "Piano, Guitar"
-  },
-]

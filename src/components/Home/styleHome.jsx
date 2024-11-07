@@ -8,7 +8,7 @@ const Style = () => {
             fontFamily: "'VALORANT', sans-serif",
             color: '#ff4655',
             fontSize: {
-                xs: 'clamp(1.2rem, 2vw, 1.9rem)',
+                xs: 'clamp(1.7rem, 2vw, 1.9rem)',
                 sm: '2.1rem',
             },
             textAlign: 'center',
@@ -17,7 +17,7 @@ const Style = () => {
             textAlign: 'center',
             color: '#fff',
             fontSize: {
-                xs: 'clamp(2.9rem, 2vw, 3.5rem)',
+                xs: 'clamp(3.9rem, 3vw, 4.9rem)',
                 sm: '4.8rem',
                 md: '6.2rem'
             },

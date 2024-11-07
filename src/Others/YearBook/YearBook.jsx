@@ -8,8 +8,10 @@ import Titles from "../../theme/Style/Titles";
 import { Add } from "@mui/icons-material";
 import ButtonBuilt from "../../theme/Button/Button";
 import emailjs from "emailjs-com";
+import { Fade } from "easy-reveal";
+import URL from "../../Hooks/URL";
 
-
+const url = URL();
 const currentYear = new Date().getFullYear()-2;
 
 const generateBatchOptions = () => {
@@ -82,8 +84,9 @@ const YearBook = () => {
     const [formValues, setFormValues] = useState({
         name: '',
         batch: '',
-        email: '',
-        quote: ''
+        phone: '',
+        quote: '',
+        status: false
     });
     const [errors, setErrors] = useState({}); // Error state to show error messages
 
@@ -94,7 +97,7 @@ const YearBook = () => {
     const handleClose = () => {
         setOpen(false); // Close dialog
         setErrors({}); // Reset errors on close
-        setFormValues({ name: '', batch: '', email: '', quote: '' }); // Reset form fields
+        setFormValues({ name: '', batch: '', phone: '', quote: '' }); // Reset form fields
     };
 
     const handleInputChange = (e) => {
@@ -108,28 +111,27 @@ const YearBook = () => {
         // Form Validation
         if (!formValues.name.trim()) newErrors.name = "Name is required";
         if (!formValues.batch.trim()) newErrors.batch = "Batch is required";
-        if (!formValues.email.trim()) newErrors.email = "Email is required";
+        if (!formValues.phone.trim() || isNaN(formValues.phone)) newErrors.phone = "Enter a valid phone number";
         if (!formValues.quote.trim()) newErrors.quote = "Quote is required";
 
         setErrors(newErrors);
-
-        // If there are no errors, you can handle the form submission (e.g., send data to backend)
-        if (Object.keys(newErrors).length === 0) {
-            const parms = formValues;
-
-            emailjs.send("service_jd2xuy9", "template_1v3zp2u", parms,"TH8hYsR3Yi-fugbCb")
-            .then((result) => {
-                if(result){
-                    setTimeout(() => {
-                        setSendingMail(false);
-                    }, 3500)
-                }
-            }, (error) => {
-                console.log(error.text);
-            });
-
-            handleClose(); // Close the dialog
-        }
+        console.log(formValues);
+        console.log(url.api+"yearbook/create");
+        fetch(url.api+"yearbook/upload", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formValues),
+        }).then((result) => {
+            if(result){
+                setTimeout(() => {
+                    setSendingMail(false);
+                }, 3500)
+            }
+        }, (error) => {
+            console.log(error.text);
+        });
     };
 
     return (
@@ -173,27 +175,29 @@ const YearBook = () => {
                     >
                         {data.map((item, index) => (
                             <Grid item size={{xs: 10, sm: 6}} margin={{xs: 'auto', sm: '0'}} key={index}>
-                            <Item>
-                                <Box>
-                                <Box sx={{ display: 'inline-flex', gap: '0.8rem' }}>
-                                    <Typography sx={{ fontWeight: 'bold' }} variant="subtitle1">
-                                    {item.name}
+                            <Fade up delay={index*200} duration={1500}>
+                                <Item>
+                                    <Box>
+                                    <Box sx={{ display: 'inline-flex', gap: '0.8rem' }}>
+                                        <Typography sx={{ fontWeight: 'bold' }} variant="subtitle1">
+                                        {item.name}
+                                        </Typography>
+                                        <Typography sx={{ color: 'var(--accent)', fontWeight: 'bold' }} variant="subtitle1">
+                                        {item.year}
+                                        </Typography>
+                                    </Box>
+                                    <Divider
+                                        sx={{
+                                        margin: '0.5rem 0',
+                                        background: 'var(--color1)',
+                                        }}
+                                    />
+                                    <Typography variant="body2">
+                                        "{item.quote}"
                                     </Typography>
-                                    <Typography sx={{ color: 'var(--accent)', fontWeight: 'bold' }} variant="subtitle1">
-                                    {item.year}
-                                    </Typography>
-                                </Box>
-                                <Divider
-                                    sx={{
-                                    margin: '0.5rem 0',
-                                    background: 'var(--color1)',
-                                    }}
-                                />
-                                <Typography variant="body2">
-                                    "{item.quote}"
-                                </Typography>
-                                </Box>
-                            </Item>
+                                    </Box>
+                                </Item>
+                            </Fade>
                             </Grid>
                         ))}
                     </Grid>  
@@ -320,12 +324,12 @@ const YearBook = () => {
                             <TextField
                                 sx={style.input}
                                 variant="filled" 
-                                label="Email"
-                                name="email"
-                                value={formValues.email}
+                                label="Phone Number"
+                                name="phone"
+                                value={formValues.phone}
                                 onChange={handleInputChange}
-                                error={Boolean(errors.email)}
-                                helperText={errors.email}
+                                error={Boolean(errors.phone)}
+                                helperText={errors.phone}
                             />
                             <TextField
                                 sx={{

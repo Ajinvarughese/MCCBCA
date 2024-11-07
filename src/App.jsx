@@ -5,6 +5,7 @@ import YearBook from './Others/Yearbook/YearBook';
 import OurGallery from './Others/OurGallery/OurGallery';
 import BrightMinds from './Others/BrightMinds/BrightMinds';
 import ImageUploader from './Others/admin/ImageUploader';
+import Admin from './Others/admin/admin';
 
 function App() {
 
@@ -16,7 +17,11 @@ function App() {
           <Route path='/yearbook' element={<YearBook />} />
           <Route path='/gallery' element={<OurGallery />} />
           <Route path='/brightminds' element={<BrightMinds />} />
-          <Route path='/test' element={<ImageUploader />} />
+        </Routes>
+
+        <Routes>
+          <Route path='/admin/ImageUpload' element={<ImageUploader />} />
+          <Route path='/admin' element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </>

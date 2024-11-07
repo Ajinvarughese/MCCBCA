@@ -7,8 +7,12 @@ import Titles from '../../theme/Style/Titles';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import Navbar from '../../theme/Navbar/Navbar';
 import CloseIcon from '@mui/icons-material/Close';
+import ApiUrl from '../../Hooks/URL';
+import { Fade } from 'easy-reveal';
+import { useState, useEffect, useRef } from 'react';
 
 const titles = Titles();
+const api = ApiUrl();
 
 function srcset(image, size, rows = 1, cols = 1) {
   return {
@@ -18,14 +22,33 @@ function srcset(image, size, rows = 1, cols = 1) {
 }
 
 export default function OurGallery() {
-  const [items, setItems] = React.useState(itemData.slice(0, 6)); // Load initial items
-  const [page, setPage] = React.useState(1);
-  const observerRef = React.useRef();
-  const [hasMore, setHasMore] = React.useState(true); // Flag to stop loading when no more data
-  const [loading, setLoading] = React.useState(true);
+  const [itemData, setItemData] = useState([]);
+  const [items, setItems] = useState([]); // Load initial items
+  const [page, setPage] = useState(1);
+  const observerRef = useRef();
+  const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [open, setOpen] = useState(false);
+  const rowColumn = [[2,2], [1,1], [1, 1], [1, 2]]
+  const res = async () => {
+    const result = await fetch(api.api + "gallery/showAll");
+    return await result.json();
+  };
 
-  const [selectedImage, setSelectedImage] = React.useState(null); // State to hold the selected image
-  const [open, setOpen] = React.useState(false); // State to control the dialog open/close
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await res();
+        setItemData(data);
+        setItems(data.slice(0, 6)); // Set initial items to show
+      } catch (error) {
+        console.error("Error fetching gallery data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const loadMoreItems = () => {
     const newItems = itemData.slice(items.length, items.length + 6); // Load 6 items at a time
@@ -37,23 +60,21 @@ export default function OurGallery() {
   };
 
   const showImage = (img) => {
-    setSelectedImage(img); // Set the clicked image
-    setLoading(true); // Set loading to true when the image is selected
-    setOpen(true); // Open the dialog to show the image
+    setSelectedImage(img);
+    setLoading(true);
+    setOpen(true);
   };
 
-
   const handleClose = () => {
-    setOpen(false); // Close the dialog
+    setOpen(false);
     setLoading(false);
   };
 
   const handleImageLoad = () => {
-    setLoading(false); // Set loading to false when image finishes loading
+    setLoading(false);
   };
 
-
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting && hasMore) {
         setPage((prevPage) => prevPage + 1);
@@ -67,7 +88,7 @@ export default function OurGallery() {
     return () => observer.disconnect();
   }, [hasMore]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (page > 1 && hasMore) {
       loadMoreItems();
     }
@@ -75,7 +96,7 @@ export default function OurGallery() {
 
   return (
     <Background
-      b1 = {true}
+      b1={true}
       b1Color="var(--accent2)"
     >
       <Navbar />
@@ -92,44 +113,52 @@ export default function OurGallery() {
           maxWidth: '700px',
           textAlign: 'center',
         }}>
-          <Typography variant="h3" sx={{...titles.title, marginBottom: '0.6rem'}}>
-            our <Typography variant="body" sx={{
-              color: 'var(--accent)',
-            }}>Gallery</Typography>
-          </Typography>
-          <Typography variant='body2'>
-            This gallery showcases the vibrant activities and achievements of the BCA department at Mar Chrysostom College (MCC).  
-            Explore the diverse range of experiences that define our department, where learning extends beyond the classroom and into real-world innovation and community engagement.
-          </Typography>
+          <Fade duration={1500} up>
+            <Typography variant="h3" sx={{...titles.title, marginBottom: '0.6rem'}}>
+              our <Typography variant="body" sx={{ color: 'var(--accent)' }}>Gallery</Typography>
+            </Typography>
+            <Typography variant='body2'>
+              This gallery showcases the vibrant activities and achievements of the BCA department at Mar Chrysostom College (MCC).  
+              Explore the diverse range of experiences that define our department, where learning extends beyond the classroom and into real-world innovation and community engagement.
+            </Typography>
+          </Fade>
         </Box>
         <ImageList
           sx={{
             maxWidth: '900px',
             margin: '0 auto',
+            overflow: 'hidden',
+            minHeight: '490px',
+            paddingBottom: '2rem'
           }}
           variant="quilted"
           cols={4}
           rowHeight={125}
         >
-          {items.map((item, index) => (
-            <ImageListItem sx={{ margin: '2px' }} key={index} cols={item.cols || 1} rows={item.rows || 1}>
-              <img
-                onClick={() => showImage(item.img)} // Pass the image to showImage
-                style={{
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                }}
-                {...srcset(item.img, 141, item.rows, item.cols)}
-                alt={item.title}
-                
-              />
-            </ImageListItem>
-          ))}
+          {items.map((item, index) => {
+            // Determine the pattern sequence based on the current "cycle" (forward or reversed)
+            const cycleIndex = Math.floor(index / rowColumn.length);
+            const isReversed = cycleIndex % 2 === 1; // Odd cycles use the reversed pattern
+
+            // Get the appropriate rows and cols based on the index and cycle direction
+            const patternIndex = index % rowColumn.length;
+            const [rows, cols] = isReversed ? rowColumn[rowColumn.length - 1 - patternIndex] : rowColumn[patternIndex];
+
+            return (
+                <ImageListItem sx={{ margin: '2px' }} cols={cols} rows={rows}>
+                  <img
+                    onClick={() => showImage(item.url)}
+                    style={{ borderRadius: '6px', cursor: 'pointer' }}
+                    {...srcset(item.url, 180, rows, cols)}
+                    alt={item.title || 'Gallery image'}
+                  />
+                </ImageListItem>
+            );
+          })}
         </ImageList>
         {hasMore && <div ref={observerRef} style={{ height: '20px' }}></div>}
       </Box>
 
-      {/* Full-screen image modal */}
       <Dialog
         sx={{
           zIndex: 100000000,
@@ -151,22 +180,22 @@ export default function OurGallery() {
             alignItems: 'center',
           }}
         >
-          {loading && ( // Show loading spinner while image is loading
+          {loading && (
             <CircularProgress
               sx={{
                 position: 'absolute',
                 color: 'var(--accent)',
                 background: 'transparent',
-                zIndex: 10000, // Make sure the spinner is above the image
+                zIndex: 10000,
               }}
             />
           )}
           <img
             src={selectedImage}
             alt="Selected"
-            onLoad={handleImageLoad} // Set loading to false when image loads
+            onLoad={handleImageLoad}
             style={{
-              display: loading ? 'none' : 'block', // Hide the image while loading
+              display: loading ? 'none' : 'block',
               width: '100%',
               overflow: 'hidden',
               height: 'auto',
@@ -194,147 +223,3 @@ export default function OurGallery() {
     </Background>
   );
 }
-
-const itemData = [
-  {
-    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-    title: 'Breakfast',
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-    title: 'Burger',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-    title: 'Camera',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-    title: 'Coffee',
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-    title: 'Hats',
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-    title: 'Honey',
-    author: '@arwinneil',
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-    title: 'Basketball',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-    title: 'Fern',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-    title: 'Mushrooms',
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-    title: 'Hats',
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-    title: 'Tomato basil',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-    title: 'Sea star',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-    title: 'Bike',
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-    title: 'Honey',
-    author: '@arwinneil',
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-    title: 'Basketball',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-    title: 'Fern',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-    title: 'Mushrooms',
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-    title: 'Hats',
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-    title: 'Tomato basil',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-    title: 'Sea star',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-    title: 'Bike',
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-    title: 'Honey',
-    author: '@arwinneil',
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-    title: 'Basketball',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-    title: 'Fern',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-    title: 'Mushrooms',
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-    title: 'Hats',
-    cols: 2,
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-    title: 'Tomato basil',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-    title: 'Sea star',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-    title: 'Bike',
-    cols: 2,
-  },
-];

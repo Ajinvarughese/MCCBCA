@@ -13,8 +13,11 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.0",
+    "@mui/lab": "^6.0.0-beta.14",
     "@mui/material": "^6.1.0",
+    "easy-reveal": "^1.1.38",
     "emailjs-com": "^3.2.0",
+    "framer-motion": "^11.11.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2"

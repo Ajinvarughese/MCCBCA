@@ -6,6 +6,8 @@ import { useState } from "react";
 import ButtonStyle from "../../theme/Button/ButtonStyle.jsx";
 import emailjs from "emailjs-com";
 import Titles from "../../theme/Style/Titles";
+import SuccessIcon from "../../assets/success.gif";
+import { Fade } from "easy-reveal";
 
 const titles = Titles();
 
@@ -113,11 +115,13 @@ const Contact = () => {
                 />
                <Box sx={style.main}>
                     <Box>
-                        <Typography variant="h3" sx={titles.title}>
-                        contact <Typography variant="body" sx={{
-                            color: 'var(--accent)',
-                        }}>us</Typography>
-                        </Typography>
+                        <Fade left duration={1500}>
+                            <Typography variant="h3" sx={titles.title}>
+                            contact <Typography variant="body" sx={{
+                                color: 'var(--accent)',
+                            }}>us</Typography>
+                            </Typography>
+                        </Fade>
                     </Box>
 
                     <Box sx={style.contact}>
@@ -130,13 +134,22 @@ const Contact = () => {
                             marginTop: {xs: '2rem', md: '0'},
                             padding: {xs: '1.5rem 0', md: '1.5rem 2rem'}
                         }}>
+                            <Fade bottom duration={1500} delay={300}>
                             <Typography variant="h6" sx={{fontSize: '20px', marginBottom: '7px'}}><strong>Get in touch </strong></Typography>
+                            </Fade>
+                            <Fade bottom duration={1500} delay={500}>
                             <Typography variant="body2" sx={{fontSize: '15px'}}><strong>Address:</strong> Get in touch </Typography>
+                            </Fade>
+                            <Fade bottom duration={1500} delay={700}>
                             <Typography variant="body2" sx={{fontSize: '15px'}}><strong>Phone:</strong> Mar Chrysostom College Paranthal, Adoor </Typography>
+                            </Fade>
+                            <Fade bottom duration={1500} delay={900}>
                             <Typography variant="body2" sx={{fontSize: '15px'}}><strong>Email:</strong> bcadepartment.mcc@gmail.com </Typography>
+                            </Fade>
                         </Box>
 
                         <Box component="form" sx={style.formMain}>
+                            <Fade up duration={1500}>
                             {
                                 !sendingMail ? (
                                     <>
@@ -155,7 +168,7 @@ const Contact = () => {
                                                 onInput={()=> {setFullNameError(false)}}
                                                 onChange={(e) => setFullName(e.target.value)}
                                                 sx={style.input}
-
+                                                name="name"
                                                 type="text"
                                                 id="filled-basic" 
                                                 label="Full name" 
@@ -166,7 +179,7 @@ const Contact = () => {
                                                 error={emailError}
                                                 helperText={emailError ? "Enter a valid email id or phone number": ""}
                                                 onInput={()=> {setEmailError(false)}}
-
+                                                name="email"
                                                 type="email"
                                                 onChange={(e) => setEmail(e.target.value)}
                                                 sx={style.input}
@@ -186,6 +199,7 @@ const Contact = () => {
                                                 sx={style.input}
                                                 id="filled-basic" 
                                                 label="Subject" 
+                                                name="subject"
                                                 variant="filled" 
                                             />
 
@@ -208,6 +222,7 @@ const Contact = () => {
                                                 fullWidth
                                                 label="Message" 
                                                 variant="filled" 
+                                                name="message"
                                             />
                                         </Box>
                                         <Button
@@ -222,12 +237,34 @@ const Contact = () => {
                                     </>
                                 ): (
                                     <>
-                                        <Box>
-                                            HEY
+                                        <Box
+                                            sx={{
+                                                maxWidth: '240px',
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                alignItems: 'center',
+                                                gap: '2rem',
+                                                margin: '0 auto',
+                                                background: 'var(--dark)',
+                                                borderRadius: '5px',
+                                                padding: '2rem 0'
+                                            }}
+                                        >
+                                            <Box
+                                                width="74px"
+                                            >
+                                                <img 
+                                                    src={SuccessIcon}
+                                                    style={{maxWidth: '100%', maxHeight: '100%', display: 'block'}}
+                                                />
+                                            </Box>
+                                            <Box>
+                                                <Typography variant="body2" sx={{color: 'var(--color1)'}}>Email send successfully</Typography>
+                                            </Box>
                                         </Box>
                                     </>
                                 )}
-                            
+                            </Fade>
                         </Box>
                     </Box>
                </Box>

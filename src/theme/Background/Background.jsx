@@ -9,7 +9,7 @@ import { Box } from "@mui/material";
     body: {
       minHeight: '568px',
       background: 'var(--bg)',
-      
+      zIndex: 0,
       width: '100%',
       overflow: 'hidden',
       scroll: 'hidden',
@@ -19,11 +19,13 @@ import { Box } from "@mui/material";
       position: 'absolute',
       top: '-80px',
       left: '-80px',
+      zIndex: -1,
       transform: 'translate(-50%, -50%)',
       animation: 'scalePulse 4s ease-in-out infinite',
     },
     b2: {
       position: 'absolute',
+      zIndex: -1,
       bottom: b2Style ? '0' :'-120px',
       top: b2Style? '50%': 0, 
       right: '-120px',
@@ -81,7 +83,7 @@ import { Box } from "@mui/material";
         </Box>
 
 
-        <Box>
+        <Box sx={{zIndex: 1000}}>
           {children}
         </Box>
       </Box>
