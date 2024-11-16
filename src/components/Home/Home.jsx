@@ -70,12 +70,12 @@ function Home() {
                                 <Typography variant='h1' sx={style.title}>computer <br /> application</Typography>     
                             </Fade>
                         </Box>         
-                            <Box sx={style.scDown}>
-                                <Fade up delay={500} duration={1300}> 
-                                    <Typography variant='h6'>Scroll Down</Typography>
-                                    <DownIcon sx={style.down} />
-                                </Fade>
-                            </Box>
+                        <Box sx={style.scDown}>
+                            <Fade up delay={500} duration={1300}> 
+                                <Typography variant='h6'>Scroll Down</Typography>
+                                <DownIcon sx={style.down} />
+                            </Fade>
+                        </Box>
                     </Box>
                     <Box sx={{
                         display: 'flex',

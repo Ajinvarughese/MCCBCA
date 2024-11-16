@@ -3,6 +3,7 @@ const Style = () => {
         body: {
             height: '100vh',
             minHeight: '569px',
+            position: 'relative',
         },
         subTitle: {
             fontFamily: "'VALORANT', sans-serif",
@@ -40,6 +41,10 @@ const Style = () => {
         scDown: {
             textAlign: 'center',
             color: '#fff',
+            top: '95%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            position: 'absolute'
         },
          down: {
             animation: 'float 2s ease-in-out infinite', 
