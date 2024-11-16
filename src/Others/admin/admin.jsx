@@ -9,11 +9,6 @@ import URL from "../../Hooks/URL";
 const titles = Titles();
 const style = {
     input: {
-        width: {
-            xs: '100%',
-            md: '80%',
-            maxWidth: '480px',
-        },
         '& .MuiFilledInput-root': {
             backgroundColor: 'var(--surface77)', // Default background color
             '&:hover': {
@@ -93,6 +88,12 @@ const Admin = () => {
             }
             setWrongPass(false);
             setLoading(false);
+
+            const encoder = new TextEncoder();
+            sessionStorage.setItem("admin", JSON.stringify(Array.from(encoder.encode(data.userId))));
+            sessionStorage.setItem("pass", JSON.stringify(Array.from(encoder.encode(data.password))));
+        }).then(() => {
+            window.location.replace("./admin/imageUpload");
         })
         .catch((error) => {
             console.error("Error:", error);

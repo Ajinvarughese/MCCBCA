@@ -6,8 +6,9 @@ import Grid from "@mui/material/Grid2";
 import { styled } from "@mui/material/styles";
 import { Fade } from "easy-reveal";
 
-import Data from "../../json/BrightMinds.json";
+import Data from "../../Hooks/Data";
 
+const data = Data().brightMinds;
 const titles = Titles();
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -73,11 +74,11 @@ const BrightMinds = () => {
         </Box>
 
         <Box sx={{ margin: '1rem 2%' }}>
-            {renderStudentGrid(Data.year1, "1st Year Students")}
+            {renderStudentGrid(data.year1, "1st Year Students")}
             <br />
-            {renderStudentGrid(Data.year2, "2nd Year Students")}
+            {renderStudentGrid(data.year2, "2nd Year Students")}
             <br />
-            {renderStudentGrid(Data.year3, "3rd Year Students")}
+            {renderStudentGrid(data.year3, "3rd Year Students")}
             <br />
           {/* 4th Year Students - Coming Soon */}
           <Typography variant="h6" sx={{ marginTop: '2rem', textAlign: 'center' }}>

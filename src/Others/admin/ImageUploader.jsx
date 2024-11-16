@@ -12,7 +12,46 @@ import ApiUrl from "../../Hooks/URL";
 const titles = Titles();
 const api = ApiUrl();
 
+
+
 const ImageUploader = () => {
+
+  const decoder = new TextDecoder();
+  const adminArray = JSON.parse(sessionStorage.getItem("admin"));
+  const passArray = JSON.parse(sessionStorage.getItem("pass"));
+
+  const admin = decoder.decode(new Uint8Array(adminArray));
+  const pass = decoder.decode(new Uint8Array(passArray));
+
+  console.log(admin);
+  console.log(pass);
+
+  try {
+    fetch(api.api + "admin/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        userId: admin,
+        password: pass
+      })
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error);
+        window.location.replace("../admin");
+      });
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    window.location.replace("../admin");
+  }
+
+
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [uploadedCount, setUploadedCount] = useState(0);
@@ -47,11 +86,37 @@ const ImageUploader = () => {
   const handleUploadClick = async () => {
     if (!selectedFiles || fileCount === 0) return;
 
+    try {
+      fetch(api.api + "admin/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          userId: admin,
+          password: pass
+        })
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Network response was not ok");
+          }
+        })
+        .catch((error) => {
+          console.error("Fetch error:", error);
+          window.location.replace("../admin");
+        });
+    } catch (error) {
+      console.error("Unexpected error:", error);
+      window.location.replace("../admin");
+    }
+
     const uploadPromises = selectedFiles.map(async ({ file }) => {
       setLoading(true);
       const data = new FormData();
       data.append("file", file);
       data.append("upload_preset", "mccbca");
+      data.append("folder", "Gallery");
       data.append("cloud_name", "dohwjrsvl");
 
       try {

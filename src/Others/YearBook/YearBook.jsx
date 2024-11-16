@@ -1,15 +1,16 @@
-import { useState } from "react";
-import { Box, Button, Container, Divider, Paper, Tooltip, Typography, Dialog, DialogTitle, DialogContent, TextField, MenuItem } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Box, Button, Container, Divider, Paper, Tooltip, Typography, Dialog, DialogTitle, DialogContent, TextField, MenuItem, Alert } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import Background from "../../theme/Background/Background";
 import Navbar from "../../theme/Navbar/Navbar";
 import Grid from "@mui/material/Grid2";
 import Titles from "../../theme/Style/Titles";
-import { Add } from "@mui/icons-material";
+import { Add, CheckCircleOutline, Send } from "@mui/icons-material";
 import ButtonBuilt from "../../theme/Button/Button";
 import emailjs from "emailjs-com";
 import { Fade } from "easy-reveal";
 import URL from "../../Hooks/URL";
+import { LoadingButton } from "@mui/lab";
 
 const url = URL();
 const currentYear = new Date().getFullYear()-2;
@@ -80,6 +81,32 @@ const Item = styled(Paper)(({ theme }) => ({
 const titles = Titles();
 
 const YearBook = () => {
+
+    const res = async () => {
+        const result = await fetch(url.api + "yearbook/showAll");
+        return await result.json();
+    };
+
+    const [data, setData] = useState([]);
+
+  
+    useEffect(() => {
+        const fetchData = async () => {
+        try {
+            const resultedData = await res();
+            setData(resultedData);
+        } catch (error) {
+            console.error("Error fetching yearbook data:", error);
+        }
+        };
+        fetchData();
+    }, []);
+
+
+
+
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
     const [open, setOpen] = useState(false); // State to control dialog visibility
     const [formValues, setFormValues] = useState({
         name: '',
@@ -114,24 +141,35 @@ const YearBook = () => {
         if (!formValues.phone.trim() || isNaN(formValues.phone)) newErrors.phone = "Enter a valid phone number";
         if (!formValues.quote.trim()) newErrors.quote = "Quote is required";
 
+        
+
         setErrors(newErrors);
-        console.log(formValues);
-        console.log(url.api+"yearbook/create");
-        fetch(url.api+"yearbook/upload", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formValues),
-        }).then((result) => {
-            if(result){
-                setTimeout(() => {
-                    setSendingMail(false);
-                }, 3500)
-            }
-        }, (error) => {
-            console.log(error.text);
-        });
+        if (Object.keys(newErrors).length === 0) {
+            setLoading(true);
+            // No validation errors, proceed with the form submission
+            fetch(url.api + "yearbook/create", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formValues),
+            }).then(() => {
+                const params = { name: formValues.name };
+                emailjs.send("service_jd2xuy9", "template_fwg5vnf", params, "TH8hYsR3Yi-fugbCb")
+                    .then((res) => {
+                        if (res) {
+                            setLoading(false);
+                            handleClose();
+                            setSuccess(true);
+                            setTimeout(() => {
+                                setSuccess(false);
+                            }, 5500);
+                        }
+                    });
+            }, (error) => {
+                console.log(error.text);
+            });
+        } 
     };
 
     return (
@@ -154,6 +192,16 @@ const YearBook = () => {
                         md: '8rem 7% 4rem 7%',
                     }, 
                 }}>
+                    <Alert sx={{ 
+                            display: success? "":"none", 
+                            margin: '2rem 0',
+                            padding: '1rem 1rem',
+                            background: "var(--success)"}} 
+                            severity="success"
+                        >
+                            Your yearbook will be reflected soon!
+                    </Alert>
+                    
 
                     <Box sx={{
                         textAlign: 'center',
@@ -183,7 +231,7 @@ const YearBook = () => {
                                         {item.name}
                                         </Typography>
                                         <Typography sx={{ color: 'var(--accent)', fontWeight: 'bold' }} variant="subtitle1">
-                                        {item.year}
+                                        {item.batch}
                                         </Typography>
                                     </Box>
                                     <Divider
@@ -356,10 +404,18 @@ const YearBook = () => {
                                 error={Boolean(errors.quote)}
                                 helperText={errors.quote}
                             />
-                            <ButtonBuilt 
+                            <LoadingButton
                                 onClick={handleSubmit}
-                                text="Submit"
-                            />
+                                loading={loading}
+                                loadingPosition="start"
+                                endIcon={loading ? "":<Send />}
+                                variant="outlined"
+                                sx={{
+                                    background: loading ? '':'var(--accent)',
+                                }}
+                            >
+                                {loading ? "Sending..." : "Send"}
+                            </LoadingButton>
                         </Box>
                     </DialogContent>
                 </Dialog>
@@ -373,41 +429,41 @@ export default YearBook;
 
 
 
-const data = [
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
-  },
-  // Add more objects if you want each item to have different content
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
-  },
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
-  },
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
-  },
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
-  },
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
-  },
-  {
-    name: 'Naveen Kumar',
-    year: '2020-2023',
-    quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
-  },
-];
+// const data = [
+//   {
+//     name: 'Naveen Kumar',
+//     year: '2020-2023',
+//     quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
+//   },
+//   // Add more objects if you want each item to have different content
+//   {
+//     name: 'Naveen Kumar',
+//     year: '2020-2023',
+//     quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
+//   },
+//   {
+//     name: 'Naveen Kumar',
+//     year: '2020-2023',
+//     quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
+//   },
+//   {
+//     name: 'Naveen Kumar',
+//     year: '2020-2023',
+//     quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
+//   },
+//   {
+//     name: 'Naveen Kumar',
+//     year: '2020-2023',
+//     quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
+//   },
+//   {
+//     name: 'Naveen Kumar',
+//     year: '2020-2023',
+//     quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
+//   },
+//   {
+//     name: 'Naveen Kumar',
+//     year: '2020-2023',
+//     quote: "Even if I don't reach all my goals, I've gone higher than I would have if I hadn't set any."
+//   },
+// ];

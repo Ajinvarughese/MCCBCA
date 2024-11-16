@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Ms. Saramma John",
+        "title": "H.O.D BCA",
+        "qualification": "MCA, Msc",
+        "url": "https://res.cloudinary.com/dohwjrsvl/image/upload/v1731046815/Faculty/ghsj7p8ytrdis4jyxciz.jpg"
+    },
+    {
+        "name": "Ms. Anu Thomas",
+        "title": "Faculty",
+        "qualification": "MCA, Msc",
+        "url": "https://res.cloudinary.com/dohwjrsvl/image/upload/v1730997144/Faculty/kwbwvyyhi3e2owwupujk.jpg"
+    },
+    {
+        "name": "Ms. Arya S",
+        "title": "Faculty",
+        "qualification": "MCA",
+        "url": "https://res.cloudinary.com/dohwjrsvl/image/upload/v1730997144/Faculty/b9hshsk58jfvvjd4ak1g.jpg"
+    },
+    {
+        "name": "Ms. Bincy K Sunny",
+        "title": "Faculty",
+        "qualification": "MTech, BTech",
+        "url": "https://res.cloudinary.com/dohwjrsvl/image/upload/v1730996919/Faculty/fpisaoofxapyke69igam.jpg"
+    },
+    {
+        "name": "Ms. Geethu S Nair",
+        "title": "Faculty",
+        "qualification": "Msc, Bsc",
+        "url": "https://res.cloudinary.com/dohwjrsvl/image/upload/v1730996919/Faculty/z7ygufl7nkqgra08ek0m.jpg"
+    },
+    {
+        "name": "Mr. Jomi Johnson",
+        "title": "Faculty",
+        "qualification": "M.sc, Bsc",
+        "url": "https://res.cloudinary.com/dohwjrsvl/image/upload/v1731047067/Faculty/vlaqbivbmnqeoahntakh.jpg"
+    }
+]

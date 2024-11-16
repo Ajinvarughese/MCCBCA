@@ -13,48 +13,18 @@ import { Fade } from "easy-reveal";
 const titles = Titles();
 
 const s = Style();
-const detail = [
-    {
-        name: "Ms. Saramma John",
-        designation: "H.O.D BCA",
-        qualification: "M.sc, Bsc"
-    },
-    {
-        name: "Ms. Anu Thomas",
-        designation: "Faculty",
-        qualification: "M.sc, MCA"
-    },
-    {
-        name: "Ms. Saramma John",
-        designation: "H.O.D BCA",
-        qualification: "M.sc, Bsc"
-    },
-    {
-        name: "Ms. Anu Thomas",
-        designation: "Faculty",
-        qualification: "M.sc, MCA"
-    },
-    {
-        name: "Ms. Saramma John",
-        designation: "H.O.D BCA",
-        qualification: "M.sc, Bsc"
-    },
-    {
-        name: "Ms. Anu Thomas",
-        designation: "Faculty",
-        qualification: "M.sc, MCA"
-    }
-]
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: 'transparent ',
+  boxShadow: 'none',
   padding: theme.spacing(2),
   ...theme.applyStyles('dark', {
     backgroundColor: 'transparent ',
   }),
 }));
 
-const Faculty = () => {
+const Faculty = (props) => {
+    const details = props.data;
     return(
    
         <Box sx={s.main}>
@@ -100,23 +70,23 @@ const Faculty = () => {
 
 
             <Grid container spacing={{ xs: 5, md: 5 }} sx={{padding: "2rem 0",}} columns={{ xs: 3, sm: 8, md: 12 }}>
-                {Array.from(detail).map((_, index) => (
+                {Array.from(details).map((_, index) => (
                     <Grid sx={{ margin: 'auto',}} key={index} size={{ xs: 2, sm: 4, md: 4 }} >
                         <Item>
-                            <Fade up duration={1500} delay={index*300}>
-                                <Box sx={{width: {xs: '160px', sm: '140px'}, margin: {xs: 0, md: 'auto'}, position: 'relative'}}>
+                            <Fade up duration={1500} distance="92px" delay={index*300}>
+                                <Box sx={{width: '140px', margin: {xs: 0, md: 'auto'}, position: 'relative'}}>
                                     <Box
                                         sx={{position: 'relative',zIndex: 1}}
                                     >
                                         <Hexagon 
-                                            img={hod}
+                                            img={details[index].url}
                                         />
                                     </Box>
                                     <Box sx={s.hexagon2}>
                                         <Hexagon 
                                             img={hod}
                                             details={true}
-                                            content={detail[index]}
+                                            content={details[index]}
                                         />
 
                                     </Box>

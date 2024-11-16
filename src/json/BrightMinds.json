@@ -12,9 +12,18 @@
             "name": "Midhun Sunil",
             "url": "https://instagram.com/midhun_sunil_",
             "skills": "Graphic designing, UI Designing"
+        },
+        {
+            "name": "Muhammed Aslam",
+            "url": "",
+            "skills": "Graphic designing, Drawing"
         }
     ],
     "year3": [
-        
+        {
+            "name": "Sanjana Sunil",
+            "url": "",
+            "skills": "Painting"
+        }
     ]
 }

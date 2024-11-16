@@ -13,6 +13,9 @@ import College from '../College/College';
 import Contact from '../Contact/Contact';
 import { Fade } from 'easy-reveal';
 
+import Data from '../../Hooks/Data';
+const data = Data();
+
 const style = Style();
 function Home() {
     return (
@@ -112,7 +115,9 @@ function Home() {
                     b2Style={true}
                 >
                     <Gallery />
-                    <Faculty />
+                    <Faculty 
+                        data={data.faculty} 
+                    />
                 </Background>
             </Box>
             <Box>

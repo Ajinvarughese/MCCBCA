@@ -60,7 +60,7 @@ const Hexagon = (prop) => {
                             fontSize="15"
 
                         >
-                            {prop.content.designation}
+                            {prop.content.title}
                         </text>
 
                         

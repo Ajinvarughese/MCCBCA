@@ -17,7 +17,7 @@ const Style = () => {
             textAlign: 'center',
             color: '#fff',
             fontSize: {
-                xs: 'clamp(3.9rem, 3vw, 4.9rem)',
+                xs: 'clamp(3.3rem, 3vw, 4.9rem)',
                 sm: '4.8rem',
                 md: '6.2rem'
             },

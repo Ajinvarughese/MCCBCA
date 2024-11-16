@@ -80,7 +80,7 @@ const About = () => {
             </Box>
 
             <Fade up duration={1500} delay={500}>
-              <Button text="Learn more"/>
+              <Button onClick={() => window.location.replace("/about")} text="Learn more"/>
             </Fade>
           </Box>
         </Box>
@@ -107,8 +107,6 @@ const About = () => {
             </Typography>
           </Box>
         </Box>
-
-
       </Box>
     </Background>
   );
