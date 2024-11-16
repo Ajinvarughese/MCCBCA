@@ -76,7 +76,7 @@ const Faculty = (props) => {
                             <Fade up duration={1500} distance="92px" delay={index*300}>
                                 <Box sx={{width: '140px', margin: {xs: 0, md: 'auto'}, position: 'relative'}}>
                                     <Box
-                                        sx={{position: 'relative',zIndex: 1}}
+                                        sx={{position: 'relative', zIndex: 1}}
                                     >
                                         <Hexagon 
                                             img={details[index].url}

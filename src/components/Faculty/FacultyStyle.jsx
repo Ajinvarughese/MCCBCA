@@ -22,7 +22,10 @@ const Style = () => {
         hexagon2: {
             position: 'absolute',
             top: '75%',
-            left: "132%",
+            left: {
+                xs: "139%",
+                sm: "132%",
+            },
             transform: 'translate(-50%, -50%)',
             width: {
                 xs: '150px',
