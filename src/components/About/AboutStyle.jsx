@@ -6,6 +6,7 @@ const Style = () => {
                 xs: '7rem 4% 3rem 4%',
                 md: '8rem 7% 4rem 7%',
             },
+            height: '100vh'
         },
         title: {
             fontFamily: 'var(--titleFont)',

@@ -11,7 +11,7 @@ const s = Style();
 const About = () => {
   return (
     <Background
-      b1 = {true}
+
       b2 = {true}
       b1Color = "var(--accent2)"
       b2Color = "var(--accent)"
