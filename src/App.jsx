@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css'
 import Home from './components/Home/Home';
-import YearBook from './Others/Yearbook/YearBook';
+import YearBook from './Others/YearBook/YearBook';
 import OurGallery from './Others/OurGallery/OurGallery';
 import BrightMinds from './Others/BrightMinds/BrightMinds';
 import ImageUploader from './Others/admin/ImageUploader';
