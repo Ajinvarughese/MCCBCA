@@ -7,6 +7,7 @@ import BrightMinds from './Others/BrightMinds/BrightMinds';
 import ImageUploader from './Others/admin/ImageUploader';
 import Admin from './Others/admin/admin';
 import AboutUs from './Others/AboutUs/AboutUs';
+import YearBookStatus from './Others/admin/YearBookStatus';
 
 function App() {
 
@@ -22,7 +23,8 @@ function App() {
         </Routes>
 
         <Routes>
-          <Route path='/admin/imageUpload' element={<ImageUploader />} />
+          <Route path='/admin/yearBookStatus' element={<YearBookStatus />} />
+          <Route path='/admin/ImageUpload' element={<ImageUploader />} />
           <Route path='/admin' element={<Admin />} />
         </Routes>
       </BrowserRouter>

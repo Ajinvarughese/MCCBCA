@@ -23,9 +23,6 @@ const ImageUploader = () => {
   const admin = decoder.decode(new Uint8Array(adminArray));
   const pass = decoder.decode(new Uint8Array(passArray));
 
-  console.log(admin);
-  console.log(pass);
-
   try {
     fetch(api.api + "admin/login", {
       method: "POST",

@@ -1,4 +1,4 @@
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, MenuItem, TextField, Typography } from "@mui/material";
 import Background from "../../theme/Background/Background";
 import Titles from "../../theme/Style/Titles";
 import Navbar from "../../theme/Navbar/Navbar";
@@ -7,6 +7,16 @@ import { useState } from "react";
 import URL from "../../Hooks/URL";
 
 const titles = Titles();
+const works = [
+    {
+        value: "ImageUpload",
+        label: "Gallery uploads"
+    },
+    {
+        value: "yearBookStatus",
+        label: "YearBook status"
+    }
+]
 const style = {
     input: {
         '& .MuiFilledInput-root': {
@@ -37,6 +47,10 @@ const style = {
             color: 'var(--accent)', // Label color when focused
         },
     },
+    options: {
+        color: "var(--color1)",
+        background: "var(--surface99)",
+    },
 }
 
 const api = URL();
@@ -44,10 +58,13 @@ const api = URL();
 const Admin = () => {
     const [userId, setUserId] = useState("");
     const [password, setPassword] = useState("");
+    const [action, setAction] = useState("");
+
     const [loading, setLoading] = useState(false);
     
     const [userIdError, setUserIdError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
+    const [actionError, setActionError] = useState(false);
     const [wrongPass, setWrongPass] = useState(false);
 
     const handleSubmit = (e) => {
@@ -55,6 +72,10 @@ const Admin = () => {
         
         if(userId == "") {
             setUserIdError(true);
+            return;
+        }
+        if(action == "") {
+            setActionError(true);
             return;
         }
         if(password == "") {
@@ -93,7 +114,16 @@ const Admin = () => {
             sessionStorage.setItem("admin", JSON.stringify(Array.from(encoder.encode(data.userId))));
             sessionStorage.setItem("pass", JSON.stringify(Array.from(encoder.encode(data.password))));
         }).then(() => {
-            window.location.replace("./admin/imageUpload");
+            switch(action) {
+                case "ImageUpload":
+                    window.location.replace("/admin/ImageUpload");
+                    break;
+                case "yearBookStatus":
+                    window.location.replace("/admin/yearBookStatus");
+                    break;
+                default:
+                    break;
+            }
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -163,6 +193,47 @@ const Admin = () => {
                             error={userIdError}
                             helperText={userIdError ? "Please enter your user id" : ""}
                         />
+                        <TextField
+                            sx={style.input}
+                            variant="filled"
+                            select
+                            label="Admin Action"
+                            name="action"
+                            onChange={(e) => setAction(e.target.value)}
+                            onInput={() => setActionError(false)}
+                            error={actionError}
+                            helperText={actionError ? "Please select an action" : ""}
+                            SelectProps={{
+                                MenuProps: {
+                                    PaperProps: {
+                                        sx: {
+                                            
+                                            backgroundColor: 'var(--bg)', // Change the background of the entire dropdown
+                                            '& .MuiMenuItem-root': {
+                                                color: 'var(--color1) !important', // Text color
+                                                '&:hover': {
+                                                    backgroundColor: 'var(--accent)', // Hover background
+                                                },
+                                                '&.Mui-selected': {
+                                                    backgroundColor: 'var(--dark)', // Selected background
+                                                    color: 'var(--color1) !important', // Selected text color
+                                                },
+                                                '&.Mui-selected:hover': {
+                                                    backgroundColor: 'var(--accent)', // Selected hover background
+                                                },
+                                            },
+                                        },
+                                    },
+                                },
+                            }}
+                        >
+                            {works.map((option) => (
+                                <MenuItem sx={{padding: '1rem'}} key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+
                         <TextField 
                             sx={style.input}
                             variant="filled"
