@@ -149,7 +149,7 @@ const Contact = (props) => {
                         </Box>
 
                         <Box component="form" sx={style.formMain}>
-                            <Fade up duration={1500}>
+                            <Fade up duration={1500} distance="60px">
                             {
                                 !sendingMail ? (
                                     <>
