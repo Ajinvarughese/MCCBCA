@@ -83,7 +83,7 @@ function Home() {
                         alignItems: 'center',
                         paddingRight: '7px',
                     }}>
-                        <Link href="https://x.com">
+                        <Link href="https://x.com/tm_bcaflix">
                             <X sx={{
                                 width: '15px', 
                                 transition: '0.3s ease',
@@ -92,7 +92,7 @@ function Home() {
                                 }
                             }} />
                         </Link>
-                        <Link href="https://instagram.com">
+                        <Link href="https://instagram.com/tm.bcaflix">
                             <Instagram sx={{
                                 width: '15px', 
                                 transition: '0.3s ease',
