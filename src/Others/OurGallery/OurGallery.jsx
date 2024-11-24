@@ -175,7 +175,7 @@ export default function OurGallery() {
             width: '100%',
             height: '100%',
             display: 'flex',
-            overflow: 'hidden',
+            overflow: 'auto',
             justifyContent: 'center',
             alignItems: 'center',
           }}
