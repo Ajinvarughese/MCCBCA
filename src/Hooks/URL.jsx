@@ -1,6 +1,6 @@
 const URL = () => {
     return {
-        api: "http://localhost:8080/api/"
+        api: "http://api-mccbca-production.up.railway.app/"
     }    
 }
 
