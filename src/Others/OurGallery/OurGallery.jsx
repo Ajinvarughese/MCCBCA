@@ -162,7 +162,8 @@ export default function OurGallery() {
       <Dialog
         sx={{
           zIndex: 100000000,
-          minHeight: '100vh',
+          minHeight: '569px',
+          height: '100vh',
           overflow: 'hidden',
         }}
         open={open}
