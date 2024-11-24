@@ -175,7 +175,7 @@ export default function OurGallery() {
             width: '100%',
             height: '100%',
             display: 'flex',
-            overflow: 'auto',
+            overflow: 'hidden',
             justifyContent: 'center',
             alignItems: 'center',
           }}
@@ -205,7 +205,7 @@ export default function OurGallery() {
             position: 'absolute',
             top: 0,
             right: 0,
-            overflow: 'hidden',
+            overflow: 'auto',
           }}>
             <CloseIcon sx={{
               fontSize: '34px',
