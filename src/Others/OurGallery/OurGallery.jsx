@@ -192,18 +192,29 @@ export default function OurGallery() {
               }}
             />
           )}
-          <img
+          {/* <img
             src={selectedImage}
             alt="Selected"
             onLoad={handleImageLoad}
             style={{
               display: loading ? 'none' : 'block',
-              width: '100%',
-              maxWidth: 'fit-content',
+              maxWidth: '100%',
               overflow: 'auto',
               height: 'auto',
             }}
-          />
+          /> */}
+          <img
+  src={selectedImage}
+  alt="Selected"
+  onLoad={handleImageLoad}
+  style={{
+    display: loading ? 'none' : 'block',
+    maxWidth: '90%',  // Change this to fit your design
+    maxHeight: '90vh', // Ensure the height is limited to the viewport height
+    overflow: 'auto',
+    objectFit: 'contain',  // Makes sure the whole image is visible
+  }}
+/>
           <Box sx={{
             position: 'absolute',
             top: 0,
