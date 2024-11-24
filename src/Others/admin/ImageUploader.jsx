@@ -128,7 +128,7 @@ const ImageUploader = () => {
         console.log(uploadImageUrl);
         handleUploadUrl(uploadImageUrl);
         setUploadedCount((prev) => prev + 1);
-        return uploadImageUrl.url;
+        return uploadImageUrl.secure_url;
       } catch (error) {
         console.log("Error:", error);
       } finally {
