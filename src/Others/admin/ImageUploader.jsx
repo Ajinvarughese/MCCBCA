@@ -58,7 +58,7 @@ const ImageUploader = () => {
 
   const handleUploadUrl = async (url) => {
     const data = {
-      "url": url.url
+      "url": url.secure_url
     };
     fetch(api.api+"gallery/upload", {
       method: "POST",
