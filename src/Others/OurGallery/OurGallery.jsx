@@ -199,6 +199,7 @@ export default function OurGallery() {
             style={{
               display: loading ? 'none' : 'block',
               width: '100%',
+              maxWidth: 'fit-content',
               overflow: 'auto',
               height: 'auto',
             }}
