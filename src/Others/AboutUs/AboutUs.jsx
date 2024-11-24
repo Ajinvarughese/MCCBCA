@@ -9,6 +9,7 @@ import Data from "../../Hooks/Data";
 import Contact from "../../components/Contact/Contact";
 
 const data = Data().about;
+const themeContact = Data().theme;
 const titles = Titles();
 
 const AboutUs = () => {
@@ -172,7 +173,7 @@ const AboutUs = () => {
                     }
                 </Box>
             </Box>
-            <Contact />
+            <Contact data={themeContact.contact} />
         </Background>
     );
 }
