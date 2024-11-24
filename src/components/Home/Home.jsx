@@ -1,7 +1,6 @@
 import { Box, Typography, Link } from '@mui/material';
 import Navbar from '../../theme/Navbar/Navbar';
 import Style from './styleHome';
-import Wall from '../../assets/wall.mp4';
 import DownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Instagram from '@mui/icons-material/Instagram';
 import X from '@mui/icons-material/X';
@@ -38,7 +37,7 @@ function Home() {
                     zIndex: -1,
                     }}
                 >
-                    <source src={Wall} type="video/mp4" />
+                    <source src={data.theme.home.wall} type="video/mp4" />
                 </video>
 
 
@@ -67,7 +66,7 @@ function Home() {
                         <Box sx={style.header}>
                             <Fade up delay={500} duration={1300}>
                                 <Typography variant='h2' sx={{...style.subTitle, marginTop: '2rem'}}>department of</Typography>
-                                <Typography variant='h1' sx={style.title}>computer <br /> application</Typography>     
+                                <Typography variant='h1' sx={style.title}>coMputer <br /> ApplicAtion</Typography>     
                             </Fade>
                         </Box>         
                         <Box sx={style.scDown}>
@@ -124,7 +123,7 @@ function Home() {
                 <College />
             </Box>
             <Box>
-                <Contact />
+                <Contact data={data.theme.contact} />
             </Box>
         </Box>
     );

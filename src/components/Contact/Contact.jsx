@@ -13,7 +13,7 @@ const titles = Titles();
 
 const style = Style();
 const btnStyle = ButtonStyle();
-const Contact = () => {
+const Contact = (props) => {
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [subject, setSubject] = useState("");
@@ -96,7 +96,7 @@ const Contact = () => {
                     zIndex: -1,
                     }}
                 >
-                    <source src={Wall} type="video/mp4" />
+                    <source src={props.data.wall} type="video/mp4" />
                 </video>
 
 
