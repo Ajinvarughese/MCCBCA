@@ -179,6 +179,7 @@ export default function OurGallery() {
             display: 'flex',
             overflow: 'auto',
             justifyContent: 'center',
+            background: 'transparent',
             alignItems: 'center',
           }}
         >
@@ -192,29 +193,19 @@ export default function OurGallery() {
               }}
             />
           )}
-          {/* <img
+         
+          <img
             src={selectedImage}
             alt="Selected"
             onLoad={handleImageLoad}
             style={{
               display: loading ? 'none' : 'block',
-              maxWidth: '100%',
+              maxWidth: '90%',  // Change this to fit your design
+              maxHeight: '90vh', // Ensure the height is limited to the viewport height
               overflow: 'auto',
-              height: 'auto',
+              objectFit: 'contain',  // Makes sure the whole image is visible
             }}
-          /> */}
-          <img
-  src={selectedImage}
-  alt="Selected"
-  onLoad={handleImageLoad}
-  style={{
-    display: loading ? 'none' : 'block',
-    maxWidth: '90%',  // Change this to fit your design
-    maxHeight: '90vh', // Ensure the height is limited to the viewport height
-    overflow: 'auto',
-    objectFit: 'contain',  // Makes sure the whole image is visible
-  }}
-/>
+          />
           <Box sx={{
             position: 'absolute',
             top: 0,
