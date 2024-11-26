@@ -51,7 +51,7 @@ export default function OurGallery() {
   }, []);
 
   const loadMoreItems = () => {
-    const newItems = itemData.slice(items.length, items.length + 6); // Load 6 items at a time
+    const newItems = itemData.slice(items.length, items.length + 10); // Load 6 items at a time
     if (newItems.length === 0) {
       setHasMore(false); // No more items to load
     } else {
