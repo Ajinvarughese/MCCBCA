@@ -137,13 +137,13 @@ const Contact = (props) => {
                             <Fade bottom duration={1500} delay={300}>
                                 <Typography variant="h6" sx={{fontSize: '20px', marginBottom: '7px'}}><strong>Get in touch </strong></Typography>
                             </Fade>
-                            <Fade bottom duration={1500} delay={500}>
+                            <Fade bottom duration={1500} delay={700}>
                                 <Typography variant="body2" sx={{fontSize: '15px'}}><strong>Address:</strong> Mar Chrysostom College Paranthal, Adoor </Typography>
                             </Fade>
                                 {/* <Fade bottom duration={1500} delay={700}>
                                 <Typography variant="body2" sx={{fontSize: '15px'}}><strong>Phone:</strong> </Typography>
                                 </Fade> */}
-                            <Fade bottom duration={1500} delay={900}>
+                            <Fade bottom duration={1500} delay={1100}>
                                 <Typography variant="body2" sx={{fontSize: '15px'}}><strong>Email:</strong> bcadepartment.mcc@gmail.com </Typography>
                             </Fade>
                         </Box>

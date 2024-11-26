@@ -47,8 +47,11 @@ const YearBookStatus = () => {
 
     // Submit data to API
     const handleSubmit = async () => {
+        if(data.length === 0) {
+            alert("No changes where made");
+            return;
+        }
         try {
-            console.log(data);
             const response = await fetch(API.api+"yearbook/update", {
                 method: "PATCH",
                 headers: {
