@@ -74,26 +74,6 @@ export default function OurGallery() {
     setLoading(false);
   };
 
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver((entries) => {
-  //     if (entries[0].isIntersecting && hasMore) {
-  //       setPage((prevPage) => prevPage + 1);
-  //     }
-  //   }, { threshold: 0.5 });
-
-  //   if (observerRef.current) {
-  //     observer.observe(observerRef.current);
-  //   }
-
-  //   return () => observer.disconnect();
-  // }, [hasMore]);
-
-  // useEffect(() => {
-  //   if (page > 1 && hasMore) {
-  //     loadMoreItems();
-  //   }
-  // }, [page, hasMore]);
-
   useEffect(() => {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -117,21 +97,42 @@ export default function OurGallery() {
 }, [hasMore, loading]);
 
 useEffect(() => {
-  if (page > 1 && hasMore && !loading) {
-    const loadItems = async () => {
-      setLoading(true); // Start loading
-      const newItems = itemData.slice(items.length, items.length + 10);
-      if (newItems.length === 0) {
-        setHasMore(false); // No more items to load
-      } else {
-        setItems((prevItems) => [...prevItems, ...newItems]);
-      }
-      setLoading(false); // End loading
-    };
+  const loadItems = async () => {
+    setLoading(true); // Start loading
+    const startIndex = (page - 1) * 10; // Calculate the start index based on the current page
+    const endIndex = startIndex + 10; // End index for slicing
+    const newItems = itemData.slice(startIndex, endIndex);
 
+    if (newItems.length === 0) {
+      setHasMore(false); // No more items to load
+    } else {
+      setItems((prevItems) => [...prevItems, ...newItems]);
+    }
+    setLoading(false); // End loading
+  };
+
+  if (page > 1 && hasMore) {
     loadItems();
   }
-}, [page, hasMore, loading, itemData, items]);
+}, [page, hasMore, itemData]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const data = await res();
+        setItemData(data); // Store the full dataset
+        setItems(data.slice(0, 10)); // Load the initial 10 items
+        setHasMore(data.length > 10); // Check if there are more items to load
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching gallery data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
 
   return (
