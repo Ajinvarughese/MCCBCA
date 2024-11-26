@@ -40,13 +40,18 @@ export default function OurGallery() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const data = await res();
-        setItemData(data);
-        setItems(data.slice(0, 10)); // Set initial items to show
+        setItemData(data); // Store the full dataset
+        setItems(data.slice(0, 10)); // Load the initial 10 items
+        setHasMore(data.length > 10); // Check if there are more items to load
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching gallery data:", error);
+        setLoading(false);
       }
     };
+
     fetchData();
   }, []);
 
@@ -116,23 +121,7 @@ useEffect(() => {
   }
 }, [page, hasMore, itemData]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const data = await res();
-        setItemData(data); // Store the full dataset
-        setItems(data.slice(0, 10)); // Load the initial 10 items
-        setHasMore(data.length > 10); // Check if there are more items to load
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching gallery data:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  
 
 
   return (
