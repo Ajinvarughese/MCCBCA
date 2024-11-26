@@ -42,7 +42,7 @@ export default function OurGallery() {
       try {
         const data = await res();
         setItemData(data);
-        setItems(data.slice(0, 6)); // Set initial items to show
+        setItems(data.slice(0, 10)); // Set initial items to show
       } catch (error) {
         console.error("Error fetching gallery data:", error);
       }
