@@ -74,25 +74,65 @@ export default function OurGallery() {
     setLoading(false);
   };
 
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver((entries) => {
+  //     if (entries[0].isIntersecting && hasMore) {
+  //       setPage((prevPage) => prevPage + 1);
+  //     }
+  //   }, { threshold: 0.5 });
+
+  //   if (observerRef.current) {
+  //     observer.observe(observerRef.current);
+  //   }
+
+  //   return () => observer.disconnect();
+  // }, [hasMore]);
+
+  // useEffect(() => {
+  //   if (page > 1 && hasMore) {
+  //     loadMoreItems();
+  //   }
+  // }, [page, hasMore]);
+
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && hasMore) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting && hasMore && !loading) {
         setPage((prevPage) => prevPage + 1);
       }
-    }, { threshold: 0.5 });
+    },
+    { threshold: 0.5 }
+  );
 
+  if (observerRef.current) {
+    observer.observe(observerRef.current);
+  }
+
+  return () => {
     if (observerRef.current) {
-      observer.observe(observerRef.current);
+      observer.unobserve(observerRef.current);
     }
+    observer.disconnect();
+  };
+}, [hasMore, loading]);
 
-    return () => observer.disconnect();
-  }, [hasMore]);
+useEffect(() => {
+  if (page > 1 && hasMore && !loading) {
+    const loadItems = async () => {
+      setLoading(true); // Start loading
+      const newItems = itemData.slice(items.length, items.length + 10);
+      if (newItems.length === 0) {
+        setHasMore(false); // No more items to load
+      } else {
+        setItems((prevItems) => [...prevItems, ...newItems]);
+      }
+      setLoading(false); // End loading
+    };
 
-  useEffect(() => {
-    if (page > 1 && hasMore) {
-      loadMoreItems();
-    }
-  }, [page, hasMore]);
+    loadItems();
+  }
+}, [page, hasMore, loading, itemData, items]);
+
 
   return (
     <Background
