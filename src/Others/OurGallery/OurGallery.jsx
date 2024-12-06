@@ -244,6 +244,7 @@ useEffect(() => {
           }}>
             <CloseIcon sx={{
               fontSize: '34px',
+              color: "var(--dark)",
               transition: '0.3s ease',
               cursor: 'pointer',
               '&:hover': {
