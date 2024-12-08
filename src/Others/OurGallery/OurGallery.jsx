@@ -2,6 +2,7 @@ import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import Dialog from '@mui/material/Dialog';
+import Skeleton from '@mui/material/Skeleton';
 import Background from '../../theme/Background/Background';
 import Titles from '../../theme/Style/Titles';
 import { Box, CircularProgress, Typography } from '@mui/material';
@@ -23,31 +24,31 @@ function srcset(image, size, rows = 1, cols = 1) {
 
 export default function OurGallery() {
   const [itemData, setItemData] = useState([]);
-  const [items, setItems] = useState([]); // Load initial items
+  const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const observerRef = useRef();
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const [open, setOpen] = useState(false);
-  const rowColumn = [[2,2], [1,1], [1, 1], [1, 2]]
-  const res = async () => {
+  const rowColumn = [[2, 2], [1, 1], [1, 1], [1, 2]];
+
+  const fetchGalleryData = async () => {
     const result = await fetch(api.api + "gallery/showAll");
     return await result.json();
   };
 
-  
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const data = await res();
-        setItemData(data); // Store the full dataset
-        setItems(data.slice(0, 10)); // Load the initial 10 items
-        setHasMore(data.length > 10); // Check if there are more items to load
-        setLoading(false);
+        const data = await fetchGalleryData();
+        setItemData(data);
+        setItems(data.slice(0, 10));
+        setHasMore(data.length > 10);
       } catch (error) {
         console.error("Error fetching gallery data:", error);
+      } finally {
         setLoading(false);
       }
     };
@@ -56,9 +57,9 @@ export default function OurGallery() {
   }, []);
 
   const loadMoreItems = () => {
-    const newItems = itemData.slice(items.length, items.length + 10); // Load 6 items at a time
+    const newItems = itemData.slice(items.length, items.length + 10);
     if (newItems.length === 0) {
-      setHasMore(false); // No more items to load
+      setHasMore(false);
     } else {
       setItems((prevItems) => [...prevItems, ...newItems]);
     }
@@ -66,13 +67,11 @@ export default function OurGallery() {
 
   const showImage = (img) => {
     setSelectedImage(img);
-    setLoading(true);
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
-    setLoading(false);
   };
 
   const handleImageLoad = () => {
@@ -80,76 +79,83 @@ export default function OurGallery() {
   };
 
   useEffect(() => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting && hasMore && !loading) {
-        setPage((prevPage) => prevPage + 1);
-      }
-    },
-    { threshold: 0.5 }
-  );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore && !loading) {
+          setPage((prevPage) => prevPage + 1);
+        }
+      },
+      { threshold: 0.5 }
+    );
 
-  if (observerRef.current) {
-    observer.observe(observerRef.current);
-  }
-
-  return () => {
     if (observerRef.current) {
-      observer.unobserve(observerRef.current);
+      observer.observe(observerRef.current);
     }
-    observer.disconnect();
-  };
-}, [hasMore, loading]);
 
-useEffect(() => {
-  const loadItems = async () => {
-    setLoading(true); // Start loading
-    const startIndex = (page - 1) * 10; // Calculate the start index based on the current page
-    const endIndex = startIndex + 10; // End index for slicing
-    const newItems = itemData.slice(startIndex, endIndex);
+    return () => {
+      if (observerRef.current) {
+        observer.unobserve(observerRef.current);
+      }
+      observer.disconnect();
+    };
+  }, [hasMore, loading]);
 
-    if (newItems.length === 0) {
-      setHasMore(false); // No more items to load
-    } else {
-      setItems((prevItems) => [...prevItems, ...newItems]);
+  useEffect(() => {
+    const loadItems = async () => {
+      setLoading(true);
+      const startIndex = (page - 1) * 10;
+      const endIndex = startIndex + 10;
+      const newItems = itemData.slice(startIndex, endIndex);
+
+      if (newItems.length === 0) {
+        setHasMore(false);
+      } else {
+        setItems((prevItems) => [...prevItems, ...newItems]);
+      }
+      setLoading(false);
+    };
+
+    if (page > 1 && hasMore) {
+      loadItems();
     }
-    setLoading(false); // End loading
-  };
-
-  if (page > 1 && hasMore) {
-    loadItems();
-  }
-}, [page, hasMore, itemData]);
-
-  
-
+  }, [page, hasMore, itemData]);
 
   return (
-    <Background
-      b1={true}
-      b1Color="var(--accent2)"
-    >
+    <Background b1={true} b1Color="var(--accent2)">
       <Navbar />
-      <Box sx={{ 
-        minHeight: '100vh',
-        padding: {
-          xs: '7rem 4% 3rem 4%',
-          md: '8rem 7% 4rem 7%',
-        }, 
-      }}>
-        <Box sx={{
-          margin: '0 auto 2rem auto',
-          width: 'fit-content',
-          maxWidth: '700px',
-          textAlign: 'center',
-        }}>
+      <Box
+        sx={{
+          minHeight: '100vh',
+          padding: {
+            xs: '7rem 4% 3rem 4%',
+            md: '8rem 7% 4rem 7%',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            margin: '0 auto 2rem auto',
+            width: 'fit-content',
+            maxWidth: '700px',
+            textAlign: 'center',
+          }}
+        >
           <Fade duration={1500} up>
-            <Typography variant="h3" sx={{...titles.title, marginBottom: '0.6rem'}}>
-              our <Typography variant="body" sx={{ color: 'var(--accent)' }}>Gallery</Typography>
+            <Typography
+              variant="h3"
+              sx={{ ...titles.title, marginBottom: '0.6rem' }}
+            >
+              our{' '}
+              <Typography variant="body" sx={{ color: 'var(--accent)' }}>
+                Gallery
+              </Typography>
             </Typography>
-            <Typography variant='body2'>
-              This gallery showcases the vibrant activities and achievements of the BCA department at Mar Chrysostom College (MCC).  
-              Explore the diverse range of experiences that define our department, where learning extends beyond the classroom and into real-world innovation and community engagement.
+            <Typography variant="body2">
+              This gallery showcases the vibrant activities and achievements of
+              the BCA department at Mar Chrysostom College (MCC). Explore the
+              diverse range of experiences that define our department, where
+              learning extends beyond the classroom and into real-world
+              innovation and community engagement.
             </Typography>
           </Fade>
         </Box>
@@ -159,32 +165,54 @@ useEffect(() => {
             margin: '0 auto',
             overflow: 'hidden',
             minHeight: '490px',
-            paddingBottom: '2rem'
+            paddingBottom: '2rem',
           }}
+          cols={3}
           variant="quilted"
-          cols={4}
-          rowHeight={125}
+          rowHeight={225}
         >
-          {items.map((item, index) => {
-            // Determine the pattern sequence based on the current "cycle" (forward or reversed)
-            const cycleIndex = Math.floor(index / rowColumn.length);
-            const isReversed = cycleIndex % 2 === 1; // Odd cycles use the reversed pattern
+          {loading
+            ? Array.from({ length: 10 }).map((_, index) => (
+                <Skeleton
+                  key={index}
+                  variant="rectangular"
+                  animation="wave"
+                  height={225}
+                  sx={{
+                    margin: '2px',
+                    borderRadius: '6px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)', // Light gray for dark themes
+                    '&::after': {
+                      background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3))',
+                    },
+                  }}
+                />
 
-            // Get the appropriate rows and cols based on the index and cycle direction
-            const patternIndex = index % rowColumn.length;
-            const [rows, cols] = isReversed ? rowColumn[rowColumn.length - 1 - patternIndex] : rowColumn[patternIndex];
+              ))
+            : items.map((item, index) => {
+                const cycleIndex = Math.floor(index / rowColumn.length);
+                const isReversed = cycleIndex % 2 === 1;
+                const patternIndex = index % rowColumn.length;
+                const [rows, cols] = isReversed
+                  ? rowColumn[rowColumn.length - 1 - patternIndex]
+                  : rowColumn[patternIndex];
 
-            return (
-                <ImageListItem sx={{ margin: '2px' }} cols={cols} rows={rows}>
-                  <img
-                    onClick={() => showImage(item.url)}
-                    style={{ borderRadius: '6px', cursor: 'pointer' }}
-                    {...srcset(item.url, 180, rows, cols)}
-                    alt={item.title || 'Gallery image'}
-                  />
-                </ImageListItem>
-            );
-          })}
+                return (
+                  <ImageListItem
+                    key={item.url}
+                    sx={{ margin: '2px' }}
+                    cols={cols}
+                    rows={rows}
+                  >
+                    <img
+                      onClick={() => showImage(item.url)}
+                      style={{ borderRadius: '6px', cursor: 'pointer' }}
+                      {...srcset(item.url, 180, rows, cols)}
+                      alt={item.title || 'Gallery image'}
+                    />
+                  </ImageListItem>
+                );
+              })}
         </ImageList>
         {hasMore && <div ref={observerRef} style={{ height: '20px' }}></div>}
       </Box>
@@ -223,34 +251,37 @@ useEffect(() => {
               }}
             />
           )}
-         
+
           <img
             src={selectedImage}
             alt="Selected"
             onLoad={handleImageLoad}
             style={{
               display: loading ? 'none' : 'block',
-              maxWidth: '90%',  // Change this to fit your design
-              maxHeight: '90vh', // Ensure the height is limited to the viewport height
+              maxWidth: '90%',
+              maxHeight: '90vh',
               overflow: 'auto',
-              objectFit: 'contain',  // Makes sure the whole image is visible
+              objectFit: 'contain',
             }}
           />
-          <Box sx={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            overflow: 'hidden',
-          }}>
-            <CloseIcon sx={{
-              fontSize: '34px',
-              color: "var(--dark)",
-              transition: '0.3s ease',
-              cursor: 'pointer',
-              '&:hover': {
-                transform: 'scale(1.18)',
-              }
-            }} 
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              overflow: 'hidden',
+            }}
+          >
+            <CloseIcon
+              sx={{
+                fontSize: '34px',
+                color: 'var(--dark)',
+                transition: '0.3s ease',
+                cursor: 'pointer',
+                '&:hover': {
+                  transform: 'scale(1.18)',
+                },
+              }}
               onClick={handleClose}
             />
           </Box>
