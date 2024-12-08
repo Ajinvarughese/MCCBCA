@@ -167,7 +167,7 @@ export default function OurGallery() {
             minHeight: '490px',
             paddingBottom: '2rem',
           }}
-          cols={3}
+          cols={loading ? 3 : 4}
           variant="quilted"
           rowHeight={225}
         >
