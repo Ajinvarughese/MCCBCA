@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import Style from "./FacultyStyle";
-import hod from "../../assets/hod.jpg";
 import Hexagon from "../../theme/Hexagon/Hexagon";
 import Grid from "@mui/material/Grid2";
 
@@ -84,7 +83,6 @@ const Faculty = (props) => {
                                     </Box>
                                     <Box sx={s.hexagon2}>
                                         <Hexagon 
-                                            img={hod}
                                             details={true}
                                             content={details[index]}
                                         />
