@@ -12,9 +12,20 @@ import YearBookStatus from './Others/admin/YearBookStatus';
 import APIURL from "./Hooks/URL";
 const api = APIURL();
 function App() {
-  fetch(api.api+"/yearbook/showAll", () => {
+  fetch(api.api + "/yearbook/showAll")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(() => {
     console.log("Hey Welcome");
   })
+  .catch(() => {
+    console.error("Error fetching data:", error);
+  });
+
   return (
     <>
       <BrowserRouter>
