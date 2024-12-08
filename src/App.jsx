@@ -9,8 +9,12 @@ import Admin from './Others/admin/admin';
 import AboutUs from './Others/AboutUs/AboutUs';
 import YearBookStatus from './Others/admin/YearBookStatus';
 
+import APIURL from "./Hooks/URL";
+const api = APIURL();
 function App() {
-
+  fetch(api.api+"/yearbook/showAll", () => {
+    console.log("Hey Welcome");
+  })
   return (
     <>
       <BrowserRouter>
