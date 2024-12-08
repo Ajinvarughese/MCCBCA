@@ -118,12 +118,24 @@ const AboutUs = () => {
                                 <img style={{maxWidth: '100%', maxHeight: '100%', borderRadius: '6px'}} src={Athena} alt="" />
                             </Box>
                         </Fade>
+                        <Box>
+                            <Fade up duration={1500} delay={500} distance="60px">
+                                <Typography variant="h5" 
+                                sx={{ 
+                                    marginTop: '2rem', 
+                                    fontFamily: 'var(--titleFont)', 
+                                    color: 'var(--accent)'
+                                }}>
+                                    AthenA
+                                </Typography>
+                            </Fade>
 
                             <Fade up duration={1500} distance="60px" delay={200}>
-                            <Typography variant="body2" sx={{ marginTop: '2rem', maxWidth: '700px', color: "var(--text)" }}>
-                                We host a range of programs, including coding competitions, hackathons, tech workshops, and seminars on emerging technologies. Annual events like <Link href='https://bcadepartmentmcc.wixsite.com/athena' sx={{fontWeight: 'bold', textDecoration: 'none'}}>Athena</Link> offers platforms for students to showcase their talents and problem-solving skills. Beyond academics, we organize cultural activities, talent hunts, and community outreach programs to promote holistic development. <br /> Through active participation in these activities, students not only gain practical knowledge but also develop essential soft skills such as teamwork, leadership, and communication, empowering them to excel in their careers.
-                            </Typography>
-                        </Fade>
+                                <Typography variant="body2" sx={{ marginTop: '2rem', maxWidth: '700px', color: "var(--text)" }}>
+                                    We host a range of programs, including coding competitions, hackathons, tech workshops, and seminars on emerging technologies. Annual events like <Link href='https://bcadepartmentmcc.wixsite.com/athena' sx={{fontWeight: 'bold', textDecoration: 'none'}}>Athena</Link> offers platforms for students to showcase their talents and problem-solving skills. Beyond academics, we organize cultural activities, talent hunts, and community outreach programs to promote holistic development. <br /> Through active participation in these activities, students not only gain practical knowledge but also develop essential soft skills such as teamwork, leadership, and communication, empowering them to excel in their careers.
+                                </Typography>
+                            </Fade>
+                        </Box>
                     </Box>
 
 
@@ -153,21 +165,24 @@ const AboutUs = () => {
                                     <img style={{maxWidth: '100%', maxHeight: '100%', borderRadius: '6px'}} src={item.img} alt="" />
                                 </Box>
                             </Fade>
-                             <Fade up duration={1500} delay={500} distance="60px">
+                            
                                 <Box>
-                                    <Typography variant="h5" 
-                                    sx={{ 
-                                        marginTop: '2rem', 
-                                        fontFamily: 'var(--titleFont)', 
-                                        color: 'var(--accent)'
-                                    }}>
-                                        {item.title}
-                                    </Typography>
-                                    <Typography variant="body2" sx={{ marginTop: '2rem', maxWidth: '700px', color: "var(--text)" }}>
-                                        {item.paragraph}
-                                    </Typography>
+                                    <Fade up duration={1500} delay={500} distance="60px">
+                                        <Typography variant="h5" 
+                                        sx={{ 
+                                            marginTop: '2rem', 
+                                            fontFamily: 'var(--titleFont)', 
+                                            color: 'var(--accent)'
+                                        }}>
+                                            {item.title}
+                                        </Typography>
+                                    </Fade>
+                                    <Fade up duration={1500} delay={800} distance="60px">
+                                        <Typography variant="body2" sx={{ marginTop: '2rem', maxWidth: '700px', color: "var(--text)" }}>
+                                            {item.paragraph}
+                                        </Typography>
+                                    </Fade>
                                 </Box>
-                            </Fade>
                             </Box>
                         ))
                     }

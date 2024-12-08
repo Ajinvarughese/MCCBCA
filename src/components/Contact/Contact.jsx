@@ -1,6 +1,5 @@
 import { Box, Link, TextField, Typography } from "@mui/material";
 import Style from "./style.jsx";
-import Wall from "../../assets/contactWall.mp4";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import ButtonStyle from "../../theme/Button/ButtonStyle.jsx";
@@ -8,6 +7,7 @@ import emailjs from "emailjs-com";
 import Titles from "../../theme/Style/Titles";
 import SuccessIcon from "../../assets/success.gif";
 import { Fade } from "easy-reveal";
+
 
 const titles = Titles();
 
@@ -83,7 +83,7 @@ const Contact = (props) => {
                     autoPlay
                     loop
                     muted
-                    
+                    poster={props.data.poster}
                     style={{
                     position: 'absolute',
                     top: 0,
@@ -109,7 +109,7 @@ const Contact = (props) => {
                     width: '100%', 
                     height: '100%', 
                     minHeight: 'inherit',
-                    background: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))',
+                    background: 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))',
                     zIndex: -1, 
                     }}
                 />

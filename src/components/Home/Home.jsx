@@ -12,6 +12,8 @@ import College from '../College/College';
 import Contact from '../Contact/Contact';
 import { Fade } from 'easy-reveal';
 
+
+
 import Data from '../../Hooks/Data';
 const data = Data();
 
@@ -26,15 +28,16 @@ function Home() {
                     autoPlay
                     loop
                     muted
+                    poster={data.theme.home.poster}
                     style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    minHeight: 'inherit',
-                    objectFit: 'cover',
-                    zIndex: -1,
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        minHeight: 'inherit',
+                        objectFit: 'cover',
+                        zIndex: -1,
                     }}
                 >
                     <source src={data.theme.home.wall} type="video/mp4" />
