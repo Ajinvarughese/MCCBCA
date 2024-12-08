@@ -169,7 +169,7 @@ export default function OurGallery() {
           }}
           cols={loading ? 3 : 4}
           variant="quilted"
-          rowHeight={225}
+          rowHeight={loading ? 225 : 125}
         >
           {loading
             ? Array.from({ length: 10 }).map((_, index) => (
@@ -177,7 +177,7 @@ export default function OurGallery() {
                   key={index}
                   variant="rectangular"
                   animation="wave"
-                  height={225}
+                  height={loading ? 225 : 125}
                   sx={{
                     margin: '2px',
                     borderRadius: '6px',
