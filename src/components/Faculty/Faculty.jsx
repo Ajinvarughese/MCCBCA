@@ -54,7 +54,7 @@ const Faculty = (props) => {
                     <Typography variant="h3" sx={titles.title}>
                     our <Typography variant="body" sx={{
                         color: 'var(--accent)',
-                    }}>faculty</Typography>
+                    }}>fAculty</Typography>
                     </Typography>
                     </Fade>
                 </Box>

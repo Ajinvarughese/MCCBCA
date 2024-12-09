@@ -117,7 +117,7 @@ const Contact = (props) => {
                     <Box>
                         <Fade left duration={1500}>
                             <Typography variant="h3" sx={titles.title}>
-                            contact <Typography variant="body" sx={{
+                            contAct <Typography variant="body" sx={{
                                 color: 'var(--accent)',
                             }}>us</Typography>
                             </Typography>

@@ -22,7 +22,7 @@ const Gallery = () => {
                         <Typography variant="h3" sx={titles.title}>
                         our <Typography variant="body" sx={{
                             color: 'var(--accent)',
-                        }}>Gallery</Typography>
+                        }}>GAllery</Typography>
                         </Typography>
                     </Fade>
                 </Box>

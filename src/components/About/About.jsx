@@ -36,7 +36,7 @@ const About = () => {
           <Box>
             <Fade right duration={1500}>
               <Typography variant="h3" sx={titles.title}>
-                about <Typography variant="body" sx={s.title2}>us</Typography>
+                About <Typography variant="body" sx={s.title2}>us</Typography>
               </Typography>
             </Fade>
           </Box>
