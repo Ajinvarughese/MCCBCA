@@ -10,9 +10,10 @@ import AboutUs from './Others/AboutUs/AboutUs';
 import YearBookStatus from './Others/admin/YearBookStatus';
 
 import APIURL from "./Hooks/URL";
+import UploadNotes from './Others/admin/UploadNotes';
 const api = APIURL();
 function App() {
-  fetch(api.api + "/yearbook/showAll")
+  fetch(api.api + "yearbook/showAll")
   .then((response) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -41,6 +42,7 @@ function App() {
           <Route path='/admin/yearBookStatus' element={<YearBookStatus />} />
           <Route path='/admin/ImageUpload' element={<ImageUploader />} />
           <Route path='/admin' element={<Admin />} />
+          <Route path='/admin/UploadNotes' element={<UploadNotes />} />
         </Routes>
       </BrowserRouter>
     </>

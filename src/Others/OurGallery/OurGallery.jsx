@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import IconButton from '@mui/material/IconButton';
 import Dialog from '@mui/material/Dialog';
 import Skeleton from '@mui/material/Skeleton';
 import Background from '../../theme/Background/Background';
@@ -272,18 +273,21 @@ export default function OurGallery() {
               overflow: 'hidden',
             }}
           >
-            <CloseIcon
-              sx={{
-                fontSize: '34px',
-                color: 'var(--dark)',
-                transition: '0.3s ease',
-                cursor: 'pointer',
-                '&:hover': {
-                  transform: 'scale(1.18)',
-                },
-              }}
-              onClick={handleClose}
-            />
+            <IconButton
+                    onClick={handleClose}
+                    sx={{
+                        position: "absolute",
+                        top: 8,
+                        right: 8,
+                        color: "white",
+                        backgroundColor: "rgba(0, 0, 0, 0.5)",
+                        "&:hover": {
+                            backgroundColor: "rgba(0, 0, 0, 0.7)",
+                        },
+                    }}
+                >
+                    <CloseIcon />
+                </IconButton>
           </Box>
         </Box>
       </Dialog>

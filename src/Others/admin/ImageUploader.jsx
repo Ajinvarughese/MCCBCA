@@ -8,6 +8,7 @@ import SendIcon from "@mui/icons-material/Send";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import SaveIcon from "@mui/icons-material/Save";
 import ApiUrl from "../../Hooks/URL";
+import AllGallery from "./Gallery/AllGallery";
 
 const titles = Titles();
 const api = ApiUrl();
@@ -281,6 +282,10 @@ const ImageUploader = () => {
             <Button onClick={() => setOpenDialog(false)} color="primary">Close</Button>
           </DialogActions>
         </Dialog>
+
+        <Box>
+          <AllGallery />
+        </Box>
       </Box>
     </Background>
   );

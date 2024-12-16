@@ -5,9 +5,14 @@ import Navbar from "../../theme/Navbar/Navbar";
 import Button from "../../theme/Button/Button"
 import { useState } from "react";
 import URL from "../../Hooks/URL";
+import { LoadingButton } from "@mui/lab";
 
 const titles = Titles();
 const works = [
+    {
+        value: "uploadNotes",
+        label: "Upload Notes"
+    },
     {
         value: "ImageUpload",
         label: "Gallery uploads"
@@ -20,35 +25,35 @@ const works = [
 const style = {
     input: {
         '& .MuiFilledInput-root': {
-            backgroundColor: 'var(--surface77)', // Default background color
+            backgroundColor: 'white', // Default background color
             '&:hover': {
-                backgroundColor: 'var(--surface99)', // Hover background color
+                backgroundColor: 'white', // Hover background color
             },
             '&.Mui-focused': {
-                backgroundColor: 'var(--surface99)', // Focused background color
+                backgroundColor: 'white', // Focused background color
             },
             '&:before': {
-                borderBottomColor: 'var(--accent)', // Default underline color
+                borderBottomColor: 'white', // Default underline color
             },
             '&:hover:not(.Mui-disabled):before': {
-                borderBottomColor: 'var(--accent)', // Underline color on hover
+                borderBottomColor: 'white', // Underline color on hover
             },
             '&:after': {
-                borderBottomColor: 'var(--color1)', // Underline color when focused
+                borderBottomColor: 'var(--accent)', // Underline color when focused
             },
             '& input': {
-                color: 'var(--color1)', // Text color
+                color: 'black', // Text color
             },
         },
         '& .MuiInputLabel-root': {
-            color: 'var(--color1)', // Label color
+            color: 'black', // Label color
         },
         '& .MuiInputLabel-root.Mui-focused': {
             color: 'var(--accent)', // Label color when focused
         },
     },
     options: {
-        color: "var(--color1)",
+        color: "black",
         background: "var(--surface99)",
     },
 }
@@ -88,9 +93,6 @@ const Admin = () => {
             "password": password
         }
 
-        console.log(data);
-        console.log(JSON.stringify(data))
-
         fetch(api.api + "admin/login", {
             method: "POST",
             headers: {
@@ -120,6 +122,9 @@ const Admin = () => {
                     break;
                 case "yearBookStatus":
                     window.location.replace("/admin/yearBookStatus");
+                    break;
+                case "uploadNotes":
+                    window.location.replace("/admin/uploadNotes");
                     break;
                 default:
                     break;
@@ -245,10 +250,21 @@ const Admin = () => {
                             error={passwordError || wrongPass}
                             helperText={wrongPass ? "UserId or password is incorrect!" :passwordError ? "Please enter your password" : ""}
                         />
+                    {   
+                        loading ? 
+                            <LoadingButton
+                                sx={{
+                                    background: "var(--accent)",
+                                    padding: '1rem 0'
+                                }}
+                                loading
+                            />
+                        :
                         <Button 
-                            text="Log In"
+                            text="Log in"
                             onClick={handleSubmit}
                         />
+                    }
                     </Box>
                 </Box>
             </Box>
