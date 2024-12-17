@@ -150,9 +150,7 @@ const UploadNotes = () => {
             console.error("Error:", error);
         }
     });
-
     await Promise.all(uploadPromises); // Wait for all uploads to complete
-
     // Reset UI
     setSelectedFiles([]);
     setFileCount(0);

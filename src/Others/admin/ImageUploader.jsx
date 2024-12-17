@@ -126,7 +126,6 @@ const ImageUploader = () => {
           throw new Error(`Upload failed: ${res.status}`);
         }
         const uploadImageUrl = await res.json();
-        console.log(uploadImageUrl);
         handleUploadUrl(uploadImageUrl);
         setUploadedCount((prev) => prev + 1);
         return uploadImageUrl.secure_url;

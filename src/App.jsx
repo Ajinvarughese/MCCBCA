@@ -11,6 +11,7 @@ import YearBookStatus from './Others/admin/YearBookStatus';
 
 import APIURL from "./Hooks/URL";
 import UploadNotes from './Others/admin/UploadNotes';
+import Notes from './Others/Notes/Notes';
 const api = APIURL();
 function App() {
   fetch(api.api + "yearbook/showAll")
@@ -36,6 +37,7 @@ function App() {
           <Route path='/yearbook' element={<YearBook />} />
           <Route path='/gallery' element={<OurGallery />} />
           <Route path='/brightminds' element={<BrightMinds />} />
+          <Route path='/notes' element={<Notes />} />
         </Routes>
 
         <Routes>

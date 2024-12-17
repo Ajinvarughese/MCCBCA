@@ -37,7 +37,7 @@ const Navbar = () => {
                 />
             </Box>
             <List>
-                {['Home', 'About', 'Gallery', 'College', 'Year Book', 'Bright Minds'].map((text, index) => (
+                {['Home', 'About', 'Gallery', 'College', 'Year Book', 'Bright Minds', 'Notes'].map((text, index) => (
                     <ListItem key={index} disablePadding>
                         <ListItemButton
                             onClick={() => {
