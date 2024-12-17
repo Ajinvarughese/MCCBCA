@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Fade } from "easy-reveal";
 import Background from "../../theme/Background/Background";
-import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, IconButton, Card, CardContent, CardActions, TextField } from "@mui/material";
+import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, IconButton, Card, CardContent, CardActions, TextField, Skeleton } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { ExpandMore as ExpandMoreIcon, Download as DownloadIcon, Search as SearchIcon } from "@mui/icons-material";
 import Navbar from "../../theme/Navbar/Navbar";
@@ -138,7 +138,18 @@ const Notes = () => {
                 {/* Semesters and PDF List */}
                 <Box gridColumn={2}>
                     {loading ? (
-                        <Typography>Loading...</Typography>
+                        // Show Skeletons for the Accordion headers
+                        Array.from({ length: 8 }).map((_, index) => (
+                            <Skeleton key={index} variant="rectangular" animation="wave"  height={60} sx={{ 
+                                    backgroundColor: 'rgba(255, 255, 255, 0.2)', 
+                                    backdropFilter: 'blur(12px)',
+                                    '&::after': {
+                                        background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2))',
+                                    },
+                                    margin: "1rem 0", borderRadius: "6px" 
+                                }} 
+                            />
+                        ))
                     ) : (
                         Object.keys(notesData).map((semester) => (
                             <Accordion
