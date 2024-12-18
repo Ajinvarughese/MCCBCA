@@ -11,6 +11,7 @@ import Background from '../../theme/Background/Background';
 import College from '../College/College';
 import Contact from '../Contact/Contact';
 import { Fade } from 'easy-reveal';
+import Logo from "../../assets/logo.png";
 
 
 
@@ -24,6 +25,7 @@ function Home() {
         <>
             <Helmet>
                 <title>BCA Department MCC</title>
+                <link rel="icon" href={Logo} />
                 <meta 
                     name="description" 
                     content="Welcome to the official BCA Department portal. Explore the world of computer applications, our faculty, gallery, and more." 
