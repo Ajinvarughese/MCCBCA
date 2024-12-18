@@ -109,7 +109,7 @@ const Notes = () => {
     return (
         <>
             <Helmet>
-                <title>Note Archives - BCA Department</title>
+                <title>Note Archives - BCA Department MCC</title>
                 <meta name="description" content="Explore and download organized notes and study materials for all semesters in the BCA Department." />
                 <meta name="keywords" content="mccbca, MCC, Notes, Study Materials, BCA Department, Semester Notes" />
             </Helmet>

@@ -56,7 +56,7 @@ const BrightMinds = () => {
   return (
     <>
       <Helmet>
-        <title>Bright Minds - BCA Department</title>
+        <title>Bright Minds - BCA Department MCC</title>
         <meta
           name="description"
           content="Explore the bright minds of the BCA department at MCC. Meet talented students from 1st, 2nd, and 3rd year who excel in various fields like coding, development, and more."

@@ -23,7 +23,7 @@ function Home() {
     return (
         <>
             <Helmet>
-                <title>BCA Department - Home</title>
+                <title>BCA Department MCC</title>
                 <meta 
                     name="description" 
                     content="Welcome to the official BCA Department portal. Explore the world of computer applications, our faculty, gallery, and more." 

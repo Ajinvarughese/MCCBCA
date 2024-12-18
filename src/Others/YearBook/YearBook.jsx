@@ -176,7 +176,7 @@ const YearBook = () => {
     return (
         <>
             <Helmet>
-                <title>YearBook | BCA Association</title>
+                <title>YearBook - BCA Department MCC</title>
                 <meta name="description" content="Explore the YearBook of our BCA Association featuring alumni details, memorable quotes, and their achievements. Share your journey and memories with us!" />
                 <meta name="keywords" content="YearBook, BCA Association, Alumni, Batch Details, Quotes, Memories, Student Achievements" />
             </Helmet>

@@ -125,7 +125,7 @@ export default function OurGallery() {
   return (
     <>
       <Helmet>
-        <title>Our Gallery - MCC BCA Department</title>
+        <title>Our Gallery - BCA Department MCC</title>
         <meta
           name="description"
           content="Explore the vibrant activities and achievements of the BCA department at Mar Chrysostom College (MCC) through our gallery, showcasing innovation and community engagement."
