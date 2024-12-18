@@ -275,7 +275,7 @@ const Contact = (props) => {
                     padding: '7px 4%'
                }}>
                     <Typography sx={style.cp} variant="body2">Developed by <strong><Link href="https://ajinvarughese.github.io" underline="hover" target="_blank">Ajin Varughese</Link></strong></Typography>
-                    <Typography sx={style.cp} variant="body2">&copy; Ajin Varughese, 2024</Typography>
+                    <Typography sx={style.cp} variant="body2">&copy; MCCBCA, 2024</Typography>
                     <Typography sx={style.cp} variant="body2">UI designing by <strong><Link href="https://www.instagram.com/midhun_sunil_" underline="hover" target="_blank">Midhun Sunil</Link></strong></Typography>
                </Box>
             </Box>

@@ -7,6 +7,7 @@ import { styled } from "@mui/material/styles";
 import { Fade } from "easy-reveal";
 
 import Data from "../../Hooks/Data";
+import { Helmet } from "react-helmet";
 
 const data = Data().brightMinds;
 const titles = Titles();
@@ -53,52 +54,65 @@ const renderStudentGrid = (students, yearLabel) => (
 
 const BrightMinds = () => {
   return (
-    <Background b1 b1Color="var(--accent2)">
-      <Box
-        sx={{
-          padding: {
-            xs: '7rem 4% 3rem 4%',
-            md: '8rem 7% 4rem 7%',
-          },
-          minHeight: '100vh',
-        }}
-      >
-        <Navbar />
-        <Box sx={{ textAlign: 'center' }}>
-          <Typography variant="h3" sx={titles.title}>
-            bright{" "}
-            <Typography variant="body" sx={{ color: 'var(--accent)' }}>
-              Minds
+    <>
+      <Helmet>
+        <title>Bright Minds - BCA Department</title>
+        <meta
+          name="description"
+          content="Explore the bright minds of the BCA department at MCC. Meet talented students from 1st, 2nd, and 3rd year who excel in various fields like coding, development, and more."
+        />
+        <meta
+          name="keywords"
+          content="Bright Minds, BCA Department, talented students, coding, development, MCC, mccbca"
+        />
+      </Helmet>
+      <Background b1 b1Color="var(--accent2)">
+        <Box
+          sx={{
+            padding: {
+              xs: '7rem 4% 3rem 4%',
+              md: '8rem 7% 4rem 7%',
+            },
+            minHeight: '100vh',
+          }}
+        >
+          <Navbar />
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography variant="h3" sx={titles.title}>
+              bright{" "}
+              <Typography variant="body" sx={{ color: 'var(--accent)' }}>
+                Minds
+              </Typography>
             </Typography>
-          </Typography>
-        </Box>
+          </Box>
 
-        <Box sx={{ margin: '1rem 2%' }}>
-            {renderStudentGrid(data.year1, "1st Year Students")}
-            <br />
-            {renderStudentGrid(data.year2, "2nd Year Students")}
-            <br />
-            {renderStudentGrid(data.year3, "3rd Year Students")}
-            <br />
-          {/* 4th Year Students - Coming Soon */}
-          <Typography variant="h6" sx={{ marginTop: '2rem', textAlign: 'center' }}>
-            4th Year Students
-          </Typography>
-          <Box
-            sx={{
-              padding: '3rem 5rem',
-              background: 'var(--dark)',
-              borderRadius: '8px',
-              textAlign: 'center',
-              margin: '0 auto',
-              boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
-            }}
-          >
-            COMING SOON!
+          <Box sx={{ margin: '1rem 2%' }}>
+              {renderStudentGrid(data.year1, "1st Year Students")}
+              <br />
+              {renderStudentGrid(data.year2, "2nd Year Students")}
+              <br />
+              {renderStudentGrid(data.year3, "3rd Year Students")}
+              <br />
+            {/* 4th Year Students - Coming Soon */}
+            <Typography variant="h6" sx={{ marginTop: '2rem', textAlign: 'center' }}>
+              4th Year Students
+            </Typography>
+            <Box
+              sx={{
+                padding: '3rem 5rem',
+                background: 'var(--dark)',
+                borderRadius: '8px',
+                textAlign: 'center',
+                margin: '0 auto',
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+              }}
+            >
+              COMING SOON!
+            </Box>
           </Box>
         </Box>
-      </Box>
-    </Background>
+      </Background>
+    </>
   );
 };
 

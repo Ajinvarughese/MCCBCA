@@ -15,120 +15,137 @@ import { Fade } from 'easy-reveal';
 
 
 import Data from '../../Hooks/Data';
+import { Helmet } from 'react-helmet';
 const data = Data();
 
 const style = Style();
 function Home() {
     return (
-        <Box>
-            <Box sx={style.body}>
-
-                {/* Background */}
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    poster={data.theme.home.poster}
-                    style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        minHeight: 'inherit',
-                        objectFit: 'cover',
-                        zIndex: -1,
-                    }}
-                >
-                    <source src={data.theme.home.wall} type="video/mp4" />
-                </video>
-
-
-                {/* Dark gradients */}
-                <Box 
-                    sx={{ 
-                    position: 'absolute', 
-                    top: 0, 
-                    left: 0, 
-                    width: '100%', 
-                    height: '100%', 
-                    minHeight: 'inherit',
-                    background: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8))',
-                    zIndex: -1, 
-                    }}
+        <>
+            <Helmet>
+                <title>BCA Department - Home</title>
+                <meta 
+                    name="description" 
+                    content="Welcome to the official BCA Department portal. Explore the world of computer applications, our faculty, gallery, and more." 
                 />
-                <Navbar />
-                <Box sx={
-                    {
-                        display: 'flex',
-                        height: '100vh',
+                <meta 
+                    name="keywords" 
+                    content="mccbca, BCA, Computer Applications, Faculty, Gallery, About BCA, BCA College, BCA Department" 
+                />
+                <meta name="author" content="BCA Department" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            </Helmet>
+        
+            <Box>
+                <Box sx={style.body}>
+
+                    {/* Background */}
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        poster={data.theme.home.poster}
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            minHeight: 'inherit',
+                            objectFit: 'cover',
+                            zIndex: -1,
+                        }}
+                    >
+                        <source src={data.theme.home.wall} type="video/mp4" />
+                    </video>
+
+
+                    {/* Dark gradients */}
+                    <Box 
+                        sx={{ 
+                        position: 'absolute', 
+                        top: 0, 
+                        left: 0, 
+                        width: '100%', 
+                        height: '100%', 
                         minHeight: 'inherit',
-                    }
-                }>
-                    <Box sx={style.hero}>
-                        <Box sx={style.header}>
-                            <Fade up delay={500} duration={1300}>
-                                <Typography variant='h2' sx={{...style.subTitle, marginTop: '2rem'}}>department of</Typography>
-                                <Typography variant='h1' sx={style.title}>coMputer <br /> ApplicAtion</Typography>     
-                            </Fade>
-                        </Box>         
-                        <Box sx={style.scDown}>
-                            <Fade up delay={500} duration={1300}> 
-                                <Typography variant='h6'>Scroll Down</Typography>
-                                <DownIcon sx={style.down} />
-                            </Fade>
+                        background: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8))',
+                        zIndex: -1, 
+                        }}
+                    />
+                    <Navbar />
+                    <Box sx={
+                        {
+                            display: 'flex',
+                            height: '100vh',
+                            minHeight: 'inherit',
+                        }
+                    }>
+                        <Box sx={style.hero}>
+                            <Box sx={style.header}>
+                                <Fade up delay={500} duration={1300}>
+                                    <Typography variant='h2' sx={{...style.subTitle, marginTop: '2rem'}}>department of</Typography>
+                                    <Typography variant='h1' sx={style.title}>coMputer <br /> ApplicAtion</Typography>     
+                                </Fade>
+                            </Box>         
+                            <Box sx={style.scDown}>
+                                <Fade up delay={500} duration={1300}> 
+                                    <Typography variant='h6'>Scroll Down</Typography>
+                                    <DownIcon sx={style.down} />
+                                </Fade>
+                            </Box>
+                        </Box>
+                        <Box sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            paddingRight: '7px',
+                        }}>
+                            <Link href="https://x.com/tm_bcaflix">
+                                <X sx={{
+                                    width: '15px', 
+                                    transition: '0.3s ease',
+                                    '&:hover': {
+                                        transform: 'scale(1.1)',
+                                    }
+                                }} />
+                            </Link>
+                            <Link href="https://instagram.com/tm.bcaflix">
+                                <Instagram sx={{
+                                    width: '15px', 
+                                    transition: '0.3s ease',
+                                    '&:hover': {
+                                        transform: 'scale(1.1)',
+                                    }
+                                }} />
+                            </Link>
                         </Box>
                     </Box>
-                    <Box sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        paddingRight: '7px',
-                    }}>
-                        <Link href="https://x.com/tm_bcaflix">
-                            <X sx={{
-                                width: '15px', 
-                                transition: '0.3s ease',
-                                '&:hover': {
-                                    transform: 'scale(1.1)',
-                                }
-                            }} />
-                        </Link>
-                        <Link href="https://instagram.com/tm.bcaflix">
-                            <Instagram sx={{
-                                width: '15px', 
-                                transition: '0.3s ease',
-                                '&:hover': {
-                                    transform: 'scale(1.1)',
-                                }
-                            }} />
-                        </Link>
-                    </Box>
+                </Box>
+                <Box>
+                    <About />
+                </Box>
+                <Box>
+                    <Background
+                        b2={true}
+                        b2Color="var(--accent2)"
+                        b2Style={true}
+                    >
+                        <Gallery />
+                        <Faculty 
+                            data={data.faculty} 
+                        />
+                    </Background>
+                </Box>
+                <Box>
+                    <College />
+                </Box>
+                <Box>
+                    <Contact data={data.theme.contact} />
                 </Box>
             </Box>
-            <Box>
-                <About />
-            </Box>
-            <Box>
-                <Background
-                    b2={true}
-                    b2Color="var(--accent2)"
-                    b2Style={true}
-                >
-                    <Gallery />
-                    <Faculty 
-                        data={data.faculty} 
-                    />
-                </Background>
-            </Box>
-            <Box>
-                <College />
-            </Box>
-            <Box>
-                <Contact data={data.theme.contact} />
-            </Box>
-        </Box>
+        </>
     );
 }
 
