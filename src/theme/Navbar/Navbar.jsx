@@ -1,6 +1,6 @@
 import { AppBar, Box, Toolbar, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import Menu from '@mui/icons-material/MenuRounded';
-import LOGO from '../../assets/logo.png';
+import LOGO from '../../assets/logoMain.png';
 import { useState } from 'react';
 import Style from './navStyle';
 import { Close } from "@mui/icons-material";
