@@ -12,6 +12,7 @@ import YearBookStatus from './Others/admin/YearBookStatus';
 import APIURL from "./Hooks/URL";
 import UploadNotes from './Others/admin/UploadNotes';
 import Notes from './Others/Notes/Notes';
+import Athena from './Others/Athena/Athena';
 const api = APIURL();
 function App() {
   fetch(api.api + "yearbook/showAll")
@@ -24,7 +25,7 @@ function App() {
   .then(() => {
     console.log("Hey Welcome");
   })
-  .catch(() => {
+  .catch((error) => {
     console.error("Error fetching data:", error);
   });
 
@@ -38,6 +39,7 @@ function App() {
           <Route path='/gallery' element={<OurGallery />} />
           <Route path='/brightminds' element={<BrightMinds />} />
           <Route path='/notes' element={<Notes />} />
+          <Route path='/athena' element={<Athena />} />
         </Routes>
 
         <Routes>

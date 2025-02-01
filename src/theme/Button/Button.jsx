@@ -8,7 +8,8 @@ const Button = (props) => {
         <ButtonReact
             onClick={props.onClick}
             variant="contained"
-            sx={style.button}
+            disabled={props.disabled}
+            sx={{...style.button, ...props.style}}
         >
             {props.text}
         </ButtonReact>

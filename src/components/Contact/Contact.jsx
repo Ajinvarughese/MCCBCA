@@ -76,7 +76,7 @@ const Contact = (props) => {
 
     return(
         <Box>
-            <Box sx={style.body}>
+            <Box sx={{...style.body, zIndex: 1}}>
 
                 {/* Background */}
                 <video
@@ -144,7 +144,7 @@ const Contact = (props) => {
                                 <Typography variant="body2" sx={{fontSize: '15px'}}><strong>Phone:</strong> </Typography>
                                 </Fade> */}
                             <Fade bottom duration={1500} delay={1100}>
-                                <Typography variant="body2" sx={{fontSize: '15px'}}><strong>Email:</strong> bcadepartment.mcc@gmail.com </Typography>
+                               <Link href="mailto:bcadepartment.mcc@gmail.com" underline="none"> <Typography variant="body2" sx={{fontSize: '15px'}}><strong>Email:</strong> bcadepartment.mcc@gmail.com </Typography></Link>
                             </Fade>
                         </Box>
 

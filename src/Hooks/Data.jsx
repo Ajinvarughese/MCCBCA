@@ -3,6 +3,7 @@ import BrightMinds from "../json/BrightMinds.json";
 import Faculty from "../json/Faculty.json";
 import GalleryMain from "../json/GalleryMain.json";
 import Theme from "../json/Theme.json";
+import Athena from "../json/Athena/Events.json";
 
 
 const Data = () => {
@@ -11,7 +12,8 @@ const Data = () => {
         brightMinds: BrightMinds,
         faculty: Faculty,
         gallery: GalleryMain,
-        theme: Theme
+        theme: Theme,
+        athena: Athena
     }
 }
 

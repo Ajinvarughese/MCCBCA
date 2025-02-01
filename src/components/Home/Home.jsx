@@ -11,7 +11,8 @@ import Background from '../../theme/Background/Background';
 import College from '../College/College';
 import Contact from '../Contact/Contact';
 import { Fade } from 'easy-reveal';
-import Logo from "../../assets/logo.png";
+import Logo from "../../assets/logoMain.png";
+import OldAthena from "../../assets/old-athena.jpg";
 
 
 
@@ -85,10 +86,23 @@ function Home() {
                     }>
                         <Box sx={style.hero}>
                             <Box sx={style.header}>
-                                <Fade up delay={500} duration={1300}>
+                                <Box>
                                     <Typography variant='h2' sx={{...style.subTitle, marginTop: '2rem'}}>department of</Typography>
                                     <Typography variant='h1' sx={style.title}>coMputer <br /> ApplicAtion</Typography>     
-                                </Fade>
+                                </Box>
+                                <Link href="/athena">
+                                    <Box sx={style.event}>
+                                        <Box sx={{flex: 1}}>
+                                            <Typography sx={{fontWeight: 'bold', marginBottom: '0.5rem'}}>Athena 2.0</Typography>
+                                            <Typography sx={{fontSize: '0.8rem'}} variant='body2'>February 11, 2025 at 9:30 AM</Typography>
+                                            <Typography sx={{fontSize: '0.8rem'}} variant='body2'>Venue: Mar Chrysostom College Paranthal, Adoor</Typography>
+                                        </Box>
+                                        <Box sx={{maxWidth: '100px', maxHeight: '100px'}}>
+                                            <img style={{maxWidth: '100%', maxHeight: '100%'}} src={OldAthena} alt="Athena" />
+                                        </Box>
+                                    </Box>
+                                </Link>
+
                             </Box>         
                             <Box sx={style.scDown}>
                                 <Fade up delay={500} duration={1300}> 

@@ -47,7 +47,6 @@ const Navbar = () => {
                                 if (trimmedRoute === 'home') {
                                     route = '/';
                                 } else if (trimmedRoute === 'college') {
-                                    // Use full URL directly for external link
                                     window.location.href = 'https://marchrysostomcollege.com';
                                     return;
                                 } else {

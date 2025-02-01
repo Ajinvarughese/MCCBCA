@@ -1,0 +1,42 @@
+{
+    "TreasureHunt": {
+        "key": 1,
+        "name": "Treasure Hunt",
+        "title": "Horcrux Hunt",
+        "img": "https://res.cloudinary.com/dohwjrsvl/image/upload/v1738405561/Athena/ospihtyrmgxhjuxthhj8.jpg",
+        "description": "Join us for an exciting Treasure Hunt set in the magical world of Harry Potter! Teams will follow clues, search for hidden objects, crack secret codes, and race to find the final treasure. Use your skills, teamwork, and a little bit of magic to win. Get ready for a thrilling adventure where only the cleverest witches and wizards will succeed!",
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLSd1aqMcmixi08P_qL1tPPW09w3L5pJn3dUXA6aQO4aeQekLkw/viewform?usp=sf_link"
+    },
+    "BGMI": {
+        "key": 2,
+        "name": "BGMI",
+        "title": "Wizard's Crossfire",
+        "img": "https://res.cloudinary.com/dohwjrsvl/image/upload/v1738405560/Athena/soj9fk6goqiirdbndvxk.webp",
+        "description": "Gear up for an action-packed Battlegrounds Mobile India (BGMI) Tournament! Compete in intense squad battles, strategize your way through the battlefield, and fight for survival in classic BR mode. Drop into the warzone, loot weapons, and outplay your opponents to be the last team standing. With thrilling maps, high-stakes action, and exciting prizes, only the best warriors will claim victory. Are you ready to dominate the battleground? Assemble your squad and join the fight!",
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLScu4z4S3iw9e92XTOPf9F4cBpObZvQyvk53Yx-qssNtU1W4_Q/viewform?usp=sf_link"
+    },
+    "Photography": {
+        "key": 3,
+        "name": "Photography",
+        "title": "Lens of Lumos",
+        "img": "https://res.cloudinary.com/dohwjrsvl/image/upload/v1738406387/Athena/woyfxj2gg59zes254ah1.jpg",
+        "description": "Unleash your creativity in our Online Photography Contest! Whether you're a professional or a beginner, this is your chance to showcase your skills and passion for photography. This event challenges participants to capture a single, unedited photo that perfectly represents the theme of the contest. Submit your best image and compete for exciting prizes, with your work being judged by experts. Get ready to capture the perfect moment and showcase your creativity!",
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLScX_dWL012_AO3oVTFYgRc48MvQB3Rj6G05txeTRE3TSmS5oA/viewform?usp=sf_link"
+    },
+    "Speedsio": {
+        "key": 4,
+        "name": "Typing Speed",
+        "title": "Wands and Words",
+        "img": "https://res.cloudinary.com/dohwjrsvl/image/upload/v1738405560/Athena/rsoxn2z33twuy5lvh0jp.webp",
+        "description": "Test your typing skills in our Typing Speed Challenge! Compete against fellow participants to type as fast and accurately as possible within a set time limit. With exciting words and phrases to type, the challenge is all about speed, precision, and focus. Whether you're a fast typist or looking to improve, this event is perfect for everyone. Race to the top of the leaderboard and claim your spot as the fastest typist at the fest. Ready, set, type!",
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLScq3QJLWL8JKokA5gzoI-g9HJwRlPaps2ogv_9Ye4i5qq5uQw/viewform?usp=sf_link"
+    },
+    "Puzzle": {
+        "key": 5,
+        "name": "Puzzle",
+        "title": "Chamber of Puzzles",
+        "img": "https://res.cloudinary.com/dohwjrsvl/image/upload/v1738405560/Athena/gbs9wj0n2l9daukoizlf.webp",
+        "description": "Step into the world of brain teasers with our Puzzle & Trivia Quest! This exciting event offers a mix of mind-bending puzzles, tricky riddles, and fun trivia challenges that will keep you on your toes. From solving engaging word puzzles and number games to answering fascinating trivia questions across various topics, there’s something for everyone to enjoy. Join us for a fantastic time filled with laughter, friendly competition, and plenty of twists and turns!",
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLSdYluRZ_pPq5FiBS5tn6vATnzYESkcGgccQ2H0ocrBkRb1zPw/viewform?usp=dialog"
+    }
+}
