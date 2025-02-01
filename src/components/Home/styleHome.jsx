@@ -48,7 +48,10 @@ const Style = () => {
             backgroundColor: 'rgba(237,237,237,0.18)',
             backdropFilter: 'blur(6px)',
             boxShadow: 'none',
-            width: '95%',
+            width: {
+                xs: "90%",
+                md: "98%"
+            },
             borderRadius: '5px',
             maxWidth: '650px',
             margin: '0 auto',
