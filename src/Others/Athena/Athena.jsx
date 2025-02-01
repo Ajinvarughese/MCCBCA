@@ -93,7 +93,7 @@ const Athena = () => {
                     gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
                     gap: '1.5rem',
                 }}>
-                    {[{ label: "YEAR", value: "2025" }, { label: "GENRE", value: "FEST" }, { label: "VENUE", value: "MAR CHRYSOSTOM COLLEGE" }].map((item, index) => (
+                    {[{ label: "DATE", value: "11TH FEB 2025" }, { label: "GENRE", value: "FEST" }, { label: "VENUE", value: "MAR CHRYSOSTOM COLLEGE" }].map((item, index) => (
                         <Box key={index} sx={{ textAlign: "center" }}>
                             <Typography variant="h6" sx={{  fontFamily: "var(--athena)", fontWeight: 'light', color: "var(--athenaColor)" }}>{item.label}</Typography>
                             <Typography sx={{ fontSize: '1rem', color: "#bdbdbd" }}>{item.value}</Typography>
