@@ -103,7 +103,7 @@ const Athena = () => {
             </Box>
             
             <Box sx={{ padding: "4rem 5%" }}>
-                <Typography variant="h3" sx={{ fontFamily: "var(--athena)", fontWeight: 300, textAlign: "center", textTransform: "uppercase", letterSpacing: 1.5, color: "#f5f5f5" }}>OUR EVENTS.</Typography>
+                <Typography variant="h3" sx={{ fontFamily: "var(--athena)", fontWeight: 300, textAlign: "center", textTransform: "uppercase", letterSpacing: 1.5, color: "#f5f5f5" }}>OUR EVENTS</Typography>
                 {
                     Object.values(data).map((item, index) => (
                         <Box key={index} sx={{
@@ -152,6 +152,77 @@ const Athena = () => {
                         </Box>
                     ))
                 }
+                <Box
+                    sx={{
+                        marginTop: '7rem',
+                    }}
+                >
+                    <Typography variant="h3" sx={{ fontFamily: "var(--athena)", fontWeight: 300, textAlign: "center", textTransform: "uppercase", letterSpacing: 1.5, color: "#f5f5f5" }}>OTHER EVENTS</Typography>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: {xs: 'column', md: 'row'},
+                            alignItems: 'center',
+                            gap: '3rem',
+                            marginTop: "2rem",
+                            justifyContent: "center",
+                        }}
+                    >
+                        {[
+                            {
+                                label: "VR SHOW",
+                                link: "https://res.cloudinary.com/dohwjrsvl/image/upload/v1738570524/Athena/fdtbar0ql05o6zu8fwsq.jpg"
+                            },  
+                            {   
+                                label: "ARCADE",
+                                link: "https://res.cloudinary.com/dohwjrsvl/image/upload/v1738475170/Athena/pw2ynvl2u4gpk3tgze1y.jpg"
+                            }
+                        ].map((item, index) => (
+                            <Fade duration={1000} up distance="40px" delay={100 * index}>
+                            <Box>
+                                <Box sx={{ 
+                                maxWidth: '300px',
+                                height: "500px",
+                                overflow: 'hidden',
+                                borderRadius: '10px',
+                            }}>
+                                <Box
+                                    component="img"
+                                    src={item.link}
+                                    alt={item.label}
+                                    sx={{
+                                        width: '100%',
+                                        height: "100%",
+                                        objectFit: "cover",
+                                        objectPosition: "center",
+                                        borderRadius: '10px',
+                                        transition: 'transform 0.3s ease-in-out',
+                                        '&:hover': {
+                                            transform: {
+                                                xs: 'scale(1.1)',
+                                                md: 'scale(1.3)',
+                                            }
+                                        },
+                                        boxShadow: "rgba(255, 255, 255, 0.1) 0px 4px 12px",
+                                    }}
+                                />
+                            </Box>
+                            <Box>
+                                <Typography variant="h5" sx={{ 
+                                textAlign: 'center', 
+                                marginTop: '1rem', 
+                                fontFamily: "var(--athena)", 
+                                fontWeight: 'light', 
+                                color: "var(--athenaColor)" 
+                            }}>
+                                {item.label}
+                            </Typography>
+                            </Box>
+                            </Box>
+                        </Fade>
+                    ))}
+                    </Box>
+                </Box>
             </Box>
             <Contact data={themeContact.contact} />
 
