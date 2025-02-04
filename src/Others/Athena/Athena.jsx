@@ -7,15 +7,35 @@ import AthenaIcon from "../../assets/athena.png";
 import { Helmet } from "react-helmet";
 import mainIcon from "../../assets/logoMain.png";
 import AthenaHarry from "../../assets/athenaHarry.png";
+import { use, useEffect, useState } from "react";
 
 const data = Data().athena;
 const themeContact = Data().theme;
 
-const isOnline = true;
+
+function isEnded() {
+    const now = new Date();
+    const targetDate = new Date("2025-02-07T20:00:00");
+    const targetStart = new Date("2025-02-05T10:30:00");
+    
+    if(now.getTime() >= targetDate.getTime() || now.getTime() <= targetStart.getTime()) {
+        return true;
+    }
+    return false;
+}
 
 const Athena = () => {
     const theme = useTheme();
     const isMdOrGreater = useMediaQuery(theme.breakpoints.up("md"));
+    const [isClosed, setIsClosed] = useState(isEnded());
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIsClosed(isEnded());
+        }, 100);
+
+        return () => clearInterval(interval);
+    }, []);
 
     return (
 
@@ -139,10 +159,10 @@ const Athena = () => {
                                                     transform: 'scale(1.09)',
                                                 },
                                                 color: "var(--color1) !important",
-                                                opacity: isOnline ? 1 : 0.5,
+                                                opacity: !isClosed ? 1 : 0.5,
                                             }} 
-                                            text={isOnline ? "REGISTER NOW" : "WE'RE CLOSED"} 
-                                            disabled={!isOnline}
+                                            text={!isClosed ? "REGISTER NOW" : "WE'RE CLOSED"} 
+                                            disabled={isClosed}
                                             onClick={() => 
                                                 window.open(item.link, "_blank")}
                                         />
