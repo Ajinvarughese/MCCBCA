@@ -8,20 +8,32 @@ import { Helmet } from "react-helmet";
 import mainIcon from "../../assets/logoMain.png";
 import AthenaHarry from "../../assets/athenaHarry.png";
 import { use, useEffect, useState } from "react";
+import rulePDF from "../../assets/athena/athena_rules.pdf";
 
 const data = Data().athena;
 const themeContact = Data().theme;
+
+const desc = [
+    { label: "DATE", value: ["11", "th FEB 2025"] },
+    { label: "GENRE", value: ["FEST"] },
+    { label: "VENUE", value: ["MAR CHRYSOSTOM COLLEGE"] }
+];
+
 
 
 function isEnded() {
     const now = new Date();
     const targetDate = new Date("2025-02-07T20:00:00");
-    const targetStart = new Date("2025-02-05T10:30:00");
+    const targetStart = new Date("2025-02-05T10:00:00");
     
     if(now.getTime() >= targetDate.getTime() || now.getTime() <= targetStart.getTime()) {
         return true;
     }
     return false;
+}
+
+const downloadPDF = () => {
+    window.open(rulePDF, '_blank');
 }
 
 const Athena = () => {
@@ -98,6 +110,19 @@ const Athena = () => {
                     <Typography sx={{ fontSize: { xs: '0.9rem', md: '1rem' }, marginTop: '0.75rem', lineHeight: 1.6, color: "#bdbdbd" }}>
                         At Athena, our mission is to ignite innovation by fostering a dynamic platform for collaboration and creativity. Through diverse events and showcases, we empower individuals to push technological boundaries and inspire the next generation of innovators. 
                     </Typography>
+                    <Button style={{ 
+                            marginTop: '1rem', 
+                            background: "none",
+                            border: "1px solid var(--athenaColor)",
+                            '&:hover': { 
+                                background: "var(--athenaColor)",
+                                transform: 'scale(1.09)',
+                            },
+                            color: "var(--color1) !important",
+                        }} 
+                        text="Download Rules" 
+                        onClick={downloadPDF}
+                    />
                 </Box>
 
                 <Divider orientation={isMdOrGreater ? "vertical" : "horizontal"} sx={{
@@ -113,10 +138,19 @@ const Athena = () => {
                     gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
                     gap: '1.5rem',
                 }}>
-                    {[{ label: "DATE", value: "11TH FEB 2025" }, { label: "GENRE", value: "FEST" }, { label: "VENUE", value: "MAR CHRYSOSTOM COLLEGE" }].map((item, index) => (
+                    {desc.map((item, index) => (
                         <Box key={index} sx={{ textAlign: "center" }}>
-                            <Typography variant="h6" sx={{  fontFamily: "var(--athena)", fontWeight: 'light', color: "var(--athenaColor)" }}>{item.label}</Typography>
-                            <Typography sx={{ fontSize: '1rem', color: "#bdbdbd" }}>{item.value}</Typography>
+                            <Typography variant="h6" sx={{ fontFamily: "var(--athena)", fontWeight: 'light', color: "var(--athenaColor)" }}>
+                                {item.label}
+                            </Typography>
+                            <Typography sx={{ fontSize: '1rem', color: "#bdbdbd" }}>
+                                {item.value.length > 1 ? (
+                                    <>
+                                        {item.value[0]}
+                                        <sup style={{ fontSize: '0.7rem', color: "#bdbdbd" }}>{item.value[1].split(" ")[0]}</sup> {item.value[1].split(" ").slice(1).join(" ")}
+                                    </>
+                                ) : item.value[0]}
+                            </Typography>
                         </Box>
                     ))}
                 </Box>
