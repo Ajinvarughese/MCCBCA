@@ -1,4 +1,4 @@
-import { Box, Divider, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Divider, List, ListItem, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Data from "../../Hooks/Data";
 import { Fade } from "easy-reveal";
 import Button from "../../theme/Button/Button";
@@ -276,6 +276,37 @@ const Athena = () => {
                         </Fade>
                     ))}
                     </Box>
+                </Box>
+
+                <Box
+                    sx={{
+                        marginTop: '7rem',
+                    }}
+                >
+                    <Typography variant="h3" sx={{ fontFamily: "var(--athena)", fontWeight: 300, textAlign: "center", textTransform: "uppercase", letterSpacing: 1.5, color: "#f5f5f5" }}>GENERAL GUIDELINES</Typography>
+                    <Typography
+                        sx={{
+                            marginTop: '1rem'
+                        }}
+                    >
+                        <ul style={{ listStyle: "none", padding: 0, maxWidth: '600px', margin: '0 auto'}}>
+                            {[
+                            "All participants should compulsorily carry their ID Card.",
+                            "Every event has a separate set of rules, and all are requested to abide by them.",
+                            "Participants must be present at the venue at least 15 minutes prior to the time scheduled, and late entry will not be allowed.",
+                            "The decisions of the judges would be final, and no further queries shall be entertained.",
+                            "Registration fees are not refundable.",
+                            "Any misbehavior will lead to disqualification of the participant.",
+                            "Organizers are free to make any changes in the rules at any point in time.",
+                            ].map((rule, index) => (
+                            <li key={index} style={{ marginBottom: "5px", opacity: "0.8"}}>
+                                {index + 1}. {rule}
+                            </li>
+                            ))}
+                        </ul>
+                    </Typography>
+
+                    
                 </Box>
             </Box>
             <Contact data={themeContact.contact} />
