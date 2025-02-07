@@ -23,7 +23,7 @@ const desc = [
 
 function isEnded() {
     const now = new Date();
-    const targetDate = new Date("2025-02-07T20:00:00");
+    const targetDate = new Date("2025-02-07T20:30:00");
     const targetStart = new Date("2025-02-05T10:00:00");
     
     if(now.getTime() >= targetDate.getTime() || now.getTime() <= targetStart.getTime()) {
