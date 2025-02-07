@@ -283,7 +283,7 @@ const Athena = () => {
                         marginTop: '7rem',
                     }}
                 >
-                    <Typography variant="h3" sx={{ fontFamily: "var(--athena)", fontWeight: 300, textAlign: "center", textTransform: "uppercase", letterSpacing: 1.5, color: "#f5f5f5" }}>GENERAL GUIDELINES</Typography>
+                    <Typography variant="h3" sx={{ fontFamily: "var(--athena)", fontWeight: 300, textAlign: "center", textTransform: "uppercase", letterSpacing: 1.5, color: "#f5f5f5" }}>GENERAL RULES</Typography>
                     <Typography
                         sx={{
                             marginTop: '1rem'
